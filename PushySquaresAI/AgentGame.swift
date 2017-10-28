@@ -19,6 +19,28 @@ class AgentGame: GameDelegate {
         self.fitness = [:]
         game.delegate = self
     }
+    
+    func run(print: Bool = false) {
+        // For two players only!
+        let startDate = Date()
+        while game.players.filter({ $0.lives > 0}).count >= 2 {
+            let ai = GameAI(game: game.createCopy(), myColor: game.currentPlayer.color, agent: colors[game.currentPlayer.color]!)
+            game.moveInDirection(ai.getNextMove())
+            if print {
+                printGame(game)
+            }
+            if Date().timeIntervalSince(startDate) > 180 && !print {
+                fitness = [:]
+                return
+            }
+            fitness[colors[game.currentPlayer.color]!] = (fitness[colors[game.currentPlayer.color]!] ?? 0) + 1
+        }
+//        let remainingPlayers = game.players.filter({ $0.lives > 0})
+//        if remainingPlayers.count == 1 {
+//            fitness[colors[remainingPlayers.first!.color]!] = 3 * remainingPlayers.first!.lives
+//        }
+    }
+    
     func playerDidMakeMove(direction: Direction?, originalPositions: [Position], destroyedSquarePositions: [Position], greyedOutPositions: [Position], newSquareColor: Color?) {
         
     }
