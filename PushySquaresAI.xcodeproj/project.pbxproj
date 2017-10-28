@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5122ADE15E550A1E3DA462B4 /* Pods_PushySquaresAI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69921A5ABCA386FC07CDED93 /* Pods_PushySquaresAI.framework */; };
+		5A25E2341FA363980047A4E5 /* AgentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A25E2331FA363980047A4E5 /* AgentManager.swift */; };
 		5A2660041F99DAC900CABB41 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2660031F99DAC900CABB41 /* main.swift */; };
 		5A26600F1F99DB1C00CABB41 /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A26600A1F99DB1C00CABB41 /* Array2D.swift */; };
 		5A2660101F99DB1C00CABB41 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A26600B1F99DB1C00CABB41 /* Game.swift */; };
@@ -15,13 +17,17 @@
 		5A2660131F99DB1C00CABB41 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A26600E1F99DB1C00CABB41 /* Tile.swift */; };
 		5A2660151F99DB5E00CABB41 /* GameAI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2660141F99DB5E00CABB41 /* GameAI.swift */; };
 		5A2660171F99DC8B00CABB41 /* GameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2660161F99DC8B00CABB41 /* GameDelegate.swift */; };
+		5A6A0CF91F9B8F930075FDB2 /* Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6A0CF81F9B8F930075FDB2 /* Agent.swift */; };
+		5A6A0D051F9BAF7A0075FDB2 /* AgentGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6A0D041F9BAF7A0075FDB2 /* AgentGame.swift */; };
+		5A6A0D071F9BB5400075FDB2 /* Generation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6A0D061F9BB5400075FDB2 /* Generation.swift */; };
+		5A6A0D091F9BDF3C0075FDB2 /* Breed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6A0D081F9BDF3C0075FDB2 /* Breed.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		5A265FFE1F99DAC900CABB41 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
+			dstPath = usr/share/man/man1;
 			dstSubfolderSpec = 0;
 			files = (
 			);
@@ -30,6 +36,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2EB398776E28AEB5F6008717 /* Pods-PushySquaresAI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PushySquaresAI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PushySquaresAI/Pods-PushySquaresAI.debug.xcconfig"; sourceTree = "<group>"; };
+		5A25E2331FA363980047A4E5 /* AgentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgentManager.swift; sourceTree = "<group>"; };
 		5A2660001F99DAC900CABB41 /* PushySquaresAI */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PushySquaresAI; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A2660031F99DAC900CABB41 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		5A26600A1F99DB1C00CABB41 /* Array2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array2D.swift; sourceTree = "<group>"; };
@@ -39,6 +47,18 @@
 		5A26600E1F99DB1C00CABB41 /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		5A2660141F99DB5E00CABB41 /* GameAI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameAI.swift; sourceTree = "<group>"; };
 		5A2660161F99DC8B00CABB41 /* GameDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDelegate.swift; sourceTree = "<group>"; };
+		5A6A0CEC1F9B8D650075FDB2 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../Library/Developer/Xcode/DerivedData/PushySquaresAI-edlihehycgringfhgtktnywpetsr/Build/Products/Debug/Realm/Realm.framework"; sourceTree = "<group>"; };
+		5A6A0CED1F9B8D650075FDB2 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../Library/Developer/Xcode/DerivedData/PushySquaresAI-edlihehycgringfhgtktnywpetsr/Build/Products/Debug/RealmSwift/RealmSwift.framework"; sourceTree = "<group>"; };
+		5A6A0CF21F9B8F300075FDB2 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../Desktop/realm-swift-3.0.0/osx/swift-4.0/Realm.framework"; sourceTree = "<group>"; };
+		5A6A0CF31F9B8F300075FDB2 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../Desktop/realm-swift-3.0.0/osx/swift-4.0/RealmSwift.framework"; sourceTree = "<group>"; };
+		5A6A0CF81F9B8F930075FDB2 /* Agent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Agent.swift; sourceTree = "<group>"; };
+		5A6A0CFA1F9B8FBE0075FDB2 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../Desktop/realm-swift-3.0.0/ios/swift-4.0/Realm.framework"; sourceTree = "<group>"; };
+		5A6A0CFB1F9B8FBE0075FDB2 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../Desktop/realm-swift-3.0.0/ios/swift-4.0/RealmSwift.framework"; sourceTree = "<group>"; };
+		5A6A0D041F9BAF7A0075FDB2 /* AgentGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgentGame.swift; sourceTree = "<group>"; };
+		5A6A0D061F9BB5400075FDB2 /* Generation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Generation.swift; sourceTree = "<group>"; };
+		5A6A0D081F9BDF3C0075FDB2 /* Breed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Breed.swift; sourceTree = "<group>"; };
+		69921A5ABCA386FC07CDED93 /* Pods_PushySquaresAI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PushySquaresAI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		972B1AAAA12C0CEF6A8B8E04 /* Pods-PushySquaresAI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PushySquaresAI.release.xcconfig"; path = "Pods/Target Support Files/Pods-PushySquaresAI/Pods-PushySquaresAI.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5122ADE15E550A1E3DA462B4 /* Pods_PushySquaresAI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,6 +78,8 @@
 			children = (
 				5A2660021F99DAC900CABB41 /* PushySquaresAI */,
 				5A2660011F99DAC900CABB41 /* Products */,
+				5A99164C359A23AFAC3D34DD /* Pods */,
+				E0C3D5BCA914408CAFE2DF90 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,8 +102,36 @@
 				5A26600E1F99DB1C00CABB41 /* Tile.swift */,
 				5A2660031F99DAC900CABB41 /* main.swift */,
 				5A2660141F99DB5E00CABB41 /* GameAI.swift */,
+				5A6A0CF81F9B8F930075FDB2 /* Agent.swift */,
+				5A6A0D041F9BAF7A0075FDB2 /* AgentGame.swift */,
+				5A6A0D061F9BB5400075FDB2 /* Generation.swift */,
+				5A6A0D081F9BDF3C0075FDB2 /* Breed.swift */,
+				5A25E2331FA363980047A4E5 /* AgentManager.swift */,
 			);
 			path = PushySquaresAI;
+			sourceTree = "<group>";
+		};
+		5A99164C359A23AFAC3D34DD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2EB398776E28AEB5F6008717 /* Pods-PushySquaresAI.debug.xcconfig */,
+				972B1AAAA12C0CEF6A8B8E04 /* Pods-PushySquaresAI.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E0C3D5BCA914408CAFE2DF90 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5A6A0CFA1F9B8FBE0075FDB2 /* Realm.framework */,
+				5A6A0CFB1F9B8FBE0075FDB2 /* RealmSwift.framework */,
+				5A6A0CF21F9B8F300075FDB2 /* Realm.framework */,
+				5A6A0CF31F9B8F300075FDB2 /* RealmSwift.framework */,
+				5A6A0CEC1F9B8D650075FDB2 /* Realm.framework */,
+				5A6A0CED1F9B8D650075FDB2 /* RealmSwift.framework */,
+				69921A5ABCA386FC07CDED93 /* Pods_PushySquaresAI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -90,9 +141,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5A2660071F99DAC900CABB41 /* Build configuration list for PBXNativeTarget "PushySquaresAI" */;
 			buildPhases = (
+				6D965D635F8395708F270F77 /* [CP] Check Pods Manifest.lock */,
 				5A265FFC1F99DAC900CABB41 /* Sources */,
 				5A265FFD1F99DAC900CABB41 /* Frameworks */,
 				5A265FFE1F99DAC900CABB41 /* CopyFiles */,
+				4E69B0AE9C24F08BB5F78861 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -137,17 +190,55 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4E69B0AE9C24F08BB5F78861 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PushySquaresAI/Pods-PushySquaresAI-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6D965D635F8395708F270F77 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5A265FFC1F99DAC900CABB41 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A6A0D091F9BDF3C0075FDB2 /* Breed.swift in Sources */,
 				5A2660041F99DAC900CABB41 /* main.swift in Sources */,
 				5A2660101F99DB1C00CABB41 /* Game.swift in Sources */,
+				5A25E2341FA363980047A4E5 /* AgentManager.swift in Sources */,
 				5A2660171F99DC8B00CABB41 /* GameDelegate.swift in Sources */,
+				5A6A0D071F9BB5400075FDB2 /* Generation.swift in Sources */,
+				5A6A0CF91F9B8F930075FDB2 /* Agent.swift in Sources */,
 				5A2660151F99DB5E00CABB41 /* GameAI.swift in Sources */,
 				5A2660111F99DB1C00CABB41 /* Map.swift in Sources */,
 				5A2660131F99DB1C00CABB41 /* Tile.swift in Sources */,
+				5A6A0D051F9BAF7A0075FDB2 /* AgentGame.swift in Sources */,
 				5A2660121F99DB1C00CABB41 /* Player.swift in Sources */,
 				5A26600F1F99DB1C00CABB41 /* Array2D.swift in Sources */,
 			);
@@ -248,8 +339,10 @@
 		};
 		5A2660081F99DAC900CABB41 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2EB398776E28AEB5F6008717 /* Pods-PushySquaresAI.debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = E9MW74DJ4Y;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks @executable_path/Realm/ @executable_path/RealmSwift/ @executable_path/Pods-PushySquaresAI/";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -257,8 +350,10 @@
 		};
 		5A2660091F99DAC900CABB41 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 972B1AAAA12C0CEF6A8B8E04 /* Pods-PushySquaresAI.release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = E9MW74DJ4Y;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks @executable_path/Realm/ @executable_path/RealmSwift/ @executable_path/Pods-PushySquaresAI/";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -283,6 +378,7 @@
 				5A2660091F99DAC900CABB41 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
