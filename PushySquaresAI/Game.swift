@@ -178,6 +178,7 @@ public class Game {
                     retVal.append(pos)
                     board[pos] = .square(.grey)
                 }
+                delegate?.playerDidDie(color: player.color)
             }
         }
         return retVal
