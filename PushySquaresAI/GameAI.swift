@@ -21,3 +21,9 @@ extension Game {
         }
     }
 }
+
+extension Player {
+    func createCopy() -> Player {
+        return Player(turnsUntilNewSquare: self.turnsUntilNewSquare, lives: self.lives, color: self.color)
+    }
+}
