@@ -27,3 +27,26 @@ extension Player {
         return Player(turnsUntilNewSquare: self.turnsUntilNewSquare, lives: self.lives, color: self.color)
     }
 }
+
+class GameAI {
+    var gameStates: [Game]
+    var game: Game {
+        return gameStates.last!
+    }
+    let wSelfLife: Int
+//    let wOpponentLifeLoss: Int
+    let wDiffLives: Int
+    let wSquareThreshold: Int
+    let wSelfSpreadBelowThreshold: Int
+    let wSelfSpreadAboveThreshold: Int
+    let wOpponentSpread: Int
+    let wSelfInDanger: Int
+    let wOpponentInDangerBelowThreshold: Int
+    let wOpponentInDangerAboveThreshold: Int
+//    var wBlockedSpawnPointCount: Int {
+//        return game.player(myColor).lives * wSelfLife
+//    }
+    
+    let myColor: Color
+    
+}
