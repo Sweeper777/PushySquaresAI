@@ -12,4 +12,12 @@ extension Game {
         return players.filter { $0.color != color }.map { $0.color }
     }
     
+    func moveInDirection(_ direction: Direction) {
+        switch direction {
+        case .up: moveUp()
+        case .down: moveDown()
+        case .left: moveLeft()
+        case .right: moveRight()
+        }
+    }
 }
