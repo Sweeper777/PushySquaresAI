@@ -49,4 +49,18 @@ class GameAI {
     
     let myColor: Color
     
+    init(game: Game, myColor: Color, wSelfLife: Int, /*wOpponentLifeLoss: Int,*/ wDiffLives: Int, wSquareThreshold: Int, wSelfSpreadBelowThreshold: Int, wSelfSpreadAboveThreshold: Int, wOpponentSpread: Int, wSelfInDanger: Int, wOpponentInDangerBelowThreshold: Int, wOpponentInDangerAboveThreshold: Int) {
+        self.gameStates = [game]
+        self.myColor = myColor
+        self.wSelfLife = wSelfLife
+//        self.wOpponentLifeLoss = wOpponentLifeLoss
+        self.wDiffLives = wDiffLives
+        self.wSquareThreshold = wSquareThreshold
+        self.wSelfSpreadBelowThreshold = wSelfSpreadBelowThreshold
+        self.wSelfSpreadAboveThreshold = wSelfSpreadAboveThreshold
+        self.wOpponentSpread = wOpponentSpread
+        self.wSelfInDanger = wSelfInDanger
+        self.wOpponentInDangerBelowThreshold = wOpponentInDangerBelowThreshold
+        self.wOpponentInDangerAboveThreshold = wOpponentInDangerAboveThreshold
+    }
 }
