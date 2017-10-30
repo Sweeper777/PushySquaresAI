@@ -76,5 +76,7 @@ class GameAI {
         if livingPlayers.count == 0 {
             return 0
         }
+//        let finalSelfLifeLoss = -lifeLosses[myColor]!
+        let finalSelfLives = me.lives
     }
 }
