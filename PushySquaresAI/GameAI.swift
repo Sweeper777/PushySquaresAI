@@ -88,5 +88,7 @@ class GameAI {
 //            finalOpponentLifeLoss = opponents.map { lifeLosses[$0]! }.reduce(0, +)
             finalDiffLives = 0
         }
+        let mySquares = game.board.indicesOf(color: myColor)
+        let finalSelfSpread = -spread(of: mySquares, pivot: game.spawnpoints[myColor]!)
     }
 }
