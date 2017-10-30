@@ -78,5 +78,15 @@ class GameAI {
         }
 //        let finalSelfLifeLoss = -lifeLosses[myColor]!
         let finalSelfLives = me.lives
+        let opponents = game.opponents(to: myColor)
+        let finalDiffLives: Int
+//        let finalOpponentLifeLoss: Int
+        if livingPlayers.count == 2 {
+            finalDiffLives = me.lives - game.player(opponents[0]).lives
+//            finalOpponentLifeLoss = 0
+        } else {
+//            finalOpponentLifeLoss = opponents.map { lifeLosses[$0]! }.reduce(0, +)
+            finalDiffLives = 0
+        }
     }
 }
