@@ -90,5 +90,6 @@ class GameAI {
         }
         let mySquares = game.board.indicesOf(color: myColor)
         let finalSelfSpread = -spread(of: mySquares, pivot: game.spawnpoints[myColor]!)
+        let finalOpponentSpread = opponents.map { self.spread(of: self.game.board.indicesOf(color: $0), pivot: self.game.spawnpoints[$0]!) }.reduce(0, +) / opponents.count
     }
 }
