@@ -67,5 +67,14 @@ class GameAI {
     func evaluateHeuristics() -> Int {
         let livingPlayers = game.players.filter({ $0.lives > 0 })
         let me = game.player(myColor)
+        if me.lives == 0 {
+            return Int.min
+        }
+        if livingPlayers.count == 1 && me.lives > 0 {
+            return Int.max
+        }
+        if livingPlayers.count == 0 {
+            return 0
+        }
     }
 }
