@@ -63,4 +63,9 @@ class GameAI {
         self.wOpponentInDangerBelowThreshold = wOpponentInDangerBelowThreshold
         self.wOpponentInDangerAboveThreshold = wOpponentInDangerAboveThreshold
     }
+    
+    func evaluateHeuristics() -> Int {
+        let livingPlayers = game.players.filter({ $0.lives > 0 })
+        let me = game.player(myColor)
+    }
 }
