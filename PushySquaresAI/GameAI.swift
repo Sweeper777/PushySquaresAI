@@ -165,4 +165,17 @@ class GameAI {
         }
         return false
     }
+    
+    private func calculateLifeLosses() -> [Color: Int] {
+        var dict = [Color: Int]()
+        if gameStates.count == 1 {
+            return [.color1: 0, .color2: 0, .color3: 0, .color4: 0]
+        }
+        for player in game.players {
+            let diff = gameStates[gameStates.endIndex - 2].player(player.color).lives - player.lives
+            dict[player.color] = diff
+        }
+        return dict
+    }
+    
 }
