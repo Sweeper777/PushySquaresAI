@@ -101,5 +101,14 @@ class GameAI {
             opponentInDanger += game.board.indicesOf(color: opponent).map { self.isInDanger(position: $0, directionsOfEdge: self.isEdge(position: $0), myColor: opponent) }.filter{ $0 }.count
         }
         let finalOpponentInDanger = opponentInDanger
+//        let spawnpoints = opponents.map { self.game.board[self.game.spawnpoints[$0]!] }
+//        var count = 0
+//        for point in spawnpoints {
+//            if case .empty = point {} else {
+//                count = 1
+//                break
+//            }
+//        }
+//        let finalBlockedSpawnPointCount = -count
     }
 }
