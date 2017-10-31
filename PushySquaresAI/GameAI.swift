@@ -144,4 +144,25 @@ class GameAI {
         return directions
     }
     
+    private func isInDanger(position: Position, directionsOfEdge: [Direction], myColor: Color) -> Bool {
+        directionLoop: for direction in directionsOfEdge {
+            let translate: (Position) -> Position
+            switch direction {
+            case .up: translate = { $0.below() }
+            case .down: translate = { $0.above() }
+            case .left: translate = { $0.right() }
+            case .right: translate = { $0.left() }
+            }
+            var curr = position
+            translationLoop: while true {
+                curr = translate(curr)
+                switch game.board[curr] {
+                case .empty, .void, .wall: continue directionLoop
+                case .square(myColor): continue translationLoop
+                case .square(_): return true
+                }
+            }
+        }
+        return false
+    }
 }
