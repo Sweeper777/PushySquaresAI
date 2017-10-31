@@ -119,4 +119,11 @@ class GameAI {
             finalSelfInDanger * wSelfInDanger +
         finalOpponentInDanger * (mySquares.count < wSquareThreshold ? wOpponentInDangerBelowThreshold : wOpponentInDangerAboveThreshold)
     }
+    
+    private func spread(of positions: [Position], pivot: Position) -> Int {
+        if let maxX = positions.map({ abs($0.x - pivot.x) }).max(), let maxY = positions.map({ abs($0.y - pivot.y) }).max() {
+            return max(maxX, maxY)
+        }
+        return 0
+    }
 }
