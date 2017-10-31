@@ -96,5 +96,10 @@ class GameAI {
             return Int.min
         }
         let finalSelfInDanger = -selfInDanger
+        var opponentInDanger = 0
+        for opponent in opponents {
+            opponentInDanger += game.board.indicesOf(color: opponent).map { self.isInDanger(position: $0, directionsOfEdge: self.isEdge(position: $0), myColor: opponent) }.filter{ $0 }.count
+        }
+        let finalOpponentInDanger = opponentInDanger
     }
 }
