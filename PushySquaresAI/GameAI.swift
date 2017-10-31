@@ -110,5 +110,13 @@ class GameAI {
 //            }
 //        }
 //        let finalBlockedSpawnPointCount = -count
+        return finalSelfLives * wSelfLife +
+            finalDiffLives * wDiffLives +
+//            finalOpponentLifeLoss * wOpponentLifeLoss +
+//            finalBlockedSpawnPointCount * wBlockedSpawnPointCount +
+            finalSelfSpread * (mySquares.count < wSquareThreshold ? wSelfSpreadBelowThreshold : wSelfSpreadAboveThreshold) +
+            finalOpponentSpread * wOpponentSpread +
+            finalSelfInDanger * wSelfInDanger +
+        finalOpponentInDanger * (mySquares.count < wSquareThreshold ? wOpponentInDangerBelowThreshold : wOpponentInDangerAboveThreshold)
     }
 }
