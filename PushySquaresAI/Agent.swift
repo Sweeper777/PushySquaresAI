@@ -56,3 +56,9 @@ extension Agent {
         return agent
     }
 }
+
+extension GameAI {
+    convenience init(game: Game, myColor: Color, agent a: Agent) {
+        self.init(game: game, myColor: myColor, wSelfLife: a.wSelfLife, wDiffLives: a.wDiffLives, wSquareThreshold: a.wSquareThreshold, wSelfSpreadBelowThreshold: a.wSelfSpreadBelowThreshold, wSelfSpreadAboveThreshold: a.wSelfSpreadAboveThreshold, wOpponentSpread: a.wOpponentSpread, wSelfInDanger: a.wSelfInDanger, wOpponentInDangerBelowThreshold: a.wOpponentInDangerBelowThreshold, wOpponentInDangerAboveThreshold: a.wOpponentInDangerAboveThreshold)
+    }
+}
