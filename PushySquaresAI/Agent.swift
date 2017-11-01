@@ -28,4 +28,17 @@ extension Agent {
         return agent
     }()
     
+    static func randomAgent() -> Agent {
+        let agent = Agent()
+        agent.wSelfLife = Int(arc4random_uniform(10000))
+        agent.wDiffLives = Int(arc4random_uniform(10000))
+        agent.wSquareThreshold = Int(arc4random_uniform(6))
+        agent.wSelfSpreadBelowThreshold = Int(arc4random_uniform(10000))
+        agent.wSelfSpreadAboveThreshold = Int(arc4random_uniform(10000))
+        agent.wOpponentSpread = Int(arc4random_uniform(10000))
+        agent.wSelfInDanger = Int(arc4random_uniform(10000))
+        agent.wOpponentInDangerBelowThreshold = Int(arc4random_uniform(10000))
+        agent.wOpponentInDangerAboveThreshold = Int(arc4random_uniform(10000))
+        return agent
+    }
 }
