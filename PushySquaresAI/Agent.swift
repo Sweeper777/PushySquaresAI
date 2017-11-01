@@ -41,4 +41,18 @@ extension Agent {
         agent.wOpponentInDangerAboveThreshold = Int(arc4random_uniform(10000))
         return agent
     }
+    
+    static func fromArray(_ arr: [Int]) -> Agent {
+        let agent = Agent()
+        agent.wSelfLife = arr[0]
+        agent.wDiffLives = arr[1]
+        agent.wSquareThreshold = arr[2]
+        agent.wSelfSpreadBelowThreshold = arr[3]
+        agent.wSelfSpreadAboveThreshold = arr[4]
+        agent.wOpponentSpread = arr[5]
+        agent.wSelfInDanger = arr[6]
+        agent.wOpponentInDangerBelowThreshold = arr[7]
+        agent.wOpponentInDangerAboveThreshold = arr[8]
+        return agent
+    }
 }
