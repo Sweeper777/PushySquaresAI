@@ -212,4 +212,8 @@ class GameAI {
         }
         return (bestScore, bestDirection ?? .left)
     }
+    
+    func getNextMove() -> Direction {
+        return minimax(depth: 4, color: myColor).direction
+    }
 }
