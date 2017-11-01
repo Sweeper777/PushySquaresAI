@@ -12,3 +12,20 @@ class Agent: Object {
     dynamic var wOpponentInDangerBelowThreshold = 0
     dynamic var wOpponentInDangerAboveThreshold = 0
 }
+
+extension Agent {
+    static let standard: Agent = {
+        let agent = Agent()
+        agent.wSelfLife = 1000
+        agent.wDiffLives = 10000
+        agent.wSquareThreshold = 4
+        agent.wSelfSpreadBelowThreshold = 100
+        agent.wSelfSpreadAboveThreshold = 1
+        agent.wOpponentSpread = 10
+        agent.wSelfInDanger = 100
+        agent.wOpponentInDangerBelowThreshold = 1
+        agent.wOpponentInDangerAboveThreshold = 100
+        return agent
+    }()
+    
+}
