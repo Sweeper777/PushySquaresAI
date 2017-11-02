@@ -26,4 +26,10 @@ func runGeneration(previousFitness: Double?) -> Double {
             i += 1
         }
     }
+    
+    let sorted = fitnesses.sorted { (a, b) -> Bool in
+        return a.value > b.value
+    }
+    
+    let top10 = sorted.prefix(through: 9)
 }
