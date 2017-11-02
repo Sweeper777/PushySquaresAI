@@ -8,4 +8,7 @@ func runGeneration(previousFitness: Double?) -> Double {
         fitnesses[agent] = 0
     }
     
+    var i = 1
+    for agent in allAgents {
+    }
 }
