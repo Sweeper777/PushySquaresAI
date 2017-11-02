@@ -32,4 +32,10 @@ func runGeneration(previousFitness: Double?) -> Double {
     }
     
     let top10 = sorted.prefix(through: 9)
+    print("--------------")
+    print("Top 10 Agents:")
+    for agent in top10 {
+        print("\(agent.value),\(agent.key.toArray().map { $0.description }.joined(separator: ","))")
+    }
+    print("--------------")
 }
