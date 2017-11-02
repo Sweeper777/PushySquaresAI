@@ -38,4 +38,15 @@ func runGeneration(previousFitness: Double?) -> Double {
         print("\(agent.value),\(agent.key.toArray().map { $0.description }.joined(separator: ","))")
     }
     print("--------------")
+func select<T>(_ count: Int, from array: [T]) -> [T] {
+    var firstFourFiths = Array(array.prefix(upTo: Int(Double(count) * 0.8)))
+    let randomIndexRange = Int(Double(count) * 0.8)...(Int(Double(count) * 0.8) + (Int(Double(count) * 0.2) * 2))
+    var randomItemsArray = Array(array[randomIndexRange])
+    var randomItems = [T]()
+    for _ in 0..<Int(Double(count) * 0.2) {
+        randomItems.append(randomFromArrayAndRemove(&randomItemsArray))
+    }
+    firstFourFiths.append(contentsOf: randomItems)
+    return firstFourFiths
+}
 }
