@@ -70,6 +70,11 @@ func runGeneration(previousFitness: Double?) -> Double {
             }
         }
         print("Mutated 2% of the population")
+    }
+    print("Average Fitness: \(currentFitness)")
+    return currentFitness
+}
+
 func select<T>(_ count: Int, from array: [T]) -> [T] {
     var firstFourFiths = Array(array.prefix(upTo: Int(Double(count) * 0.8)))
     let randomIndexRange = Int(Double(count) * 0.8)...(Int(Double(count) * 0.8) + (Int(Double(count) * 0.2) * 2))
