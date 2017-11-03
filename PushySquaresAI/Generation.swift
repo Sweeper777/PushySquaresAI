@@ -63,6 +63,13 @@ func runGeneration(previousFitness: Double?) -> Double {
         } else {
             mutationRate = 4
         }
+        for _ in 0..<mutationRate {
+            let agent = randomFromArrayAndRemove(&offsprings)
+            for _ in 0..<mutationRate {
+                agent.mutate()
+            }
+        }
+        print("Mutated 2% of the population")
 func select<T>(_ count: Int, from array: [T]) -> [T] {
     var firstFourFiths = Array(array.prefix(upTo: Int(Double(count) * 0.8)))
     let randomIndexRange = Int(Double(count) * 0.8)...(Int(Double(count) * 0.8) + (Int(Double(count) * 0.2) * 2))
