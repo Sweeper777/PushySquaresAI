@@ -55,6 +55,14 @@ func runGeneration(previousFitness: Double?) -> Double {
             realm.add(offspring)
             offsprings.append(offspring)
         }
+        let mutationRate: Int
+        if previousFitness == nil {
+            mutationRate = 4
+        } else if abs(previousFitness! - currentFitness) > 10 && currentFitness > previousFitness! {
+            mutationRate = 1
+        } else {
+            mutationRate = 4
+        }
 func select<T>(_ count: Int, from array: [T]) -> [T] {
     var firstFourFiths = Array(array.prefix(upTo: Int(Double(count) * 0.8)))
     let randomIndexRange = Int(Double(count) * 0.8)...(Int(Double(count) * 0.8) + (Int(Double(count) * 0.2) * 2))
