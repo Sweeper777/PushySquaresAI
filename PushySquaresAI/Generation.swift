@@ -49,4 +49,44 @@ func select<T>(_ count: Int, from array: [T]) -> [T] {
     firstFourFiths.append(contentsOf: randomItems)
     return firstFourFiths
 }
+
+extension Agent {
+    func toArray() -> [Int] {
+        return [
+         wSelfLife,
+         wDiffLives,
+         wSquareThreshold,
+         wSelfSpreadBelowThreshold,
+         wSelfSpreadAboveThreshold,
+         wOpponentSpread,
+         wSelfInDanger,
+         wOpponentInDangerBelowThreshold,
+         wOpponentInDangerAboveThreshold,
+        ]
+    }
+    
+    func mutate() {
+        func mutateProperty(_ property: inout Int) {
+            property = Int(Double(property) * (arc4random_uniform(2) == 0 ? 1.1 : 0.9))
+        }
+        switch arc4random_uniform(8) {
+        case 0:
+            mutateProperty(&wDiffLives)
+        case 1:
+            mutateProperty(&wSelfLife)
+        case 2:
+            mutateProperty(&wSelfSpreadBelowThreshold)
+        case 3:
+            mutateProperty(&wSelfSpreadAboveThreshold)
+        case 4:
+            mutateProperty(&wOpponentSpread)
+        case 5:
+            mutateProperty(&wSelfInDanger)
+        case 6:
+            mutateProperty(&wOpponentInDangerBelowThreshold)
+        case 7:
+            mutateProperty(&wOpponentInDangerAboveThreshold)
+        default: break
+        }
+    }
 }
