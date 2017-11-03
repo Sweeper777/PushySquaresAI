@@ -47,6 +47,14 @@ func runGeneration(previousFitness: Double?) -> Double {
             realm.delete(agent)
         }
         print("Removed low fitness agents")
+        var offsprings = [Agent]()
+        for _ in 0..<toBeKilled.count {
+            let father = toBeBred[Int(arc4random_uniform(UInt32(toBeBred.count)))]
+            let mother = toBeBred[Int(arc4random_uniform(UInt32(toBeBred.count)))]
+            let offspring = Agent.breed(agent1: father, agent2: mother)
+            realm.add(offspring)
+            offsprings.append(offspring)
+        }
 func select<T>(_ count: Int, from array: [T]) -> [T] {
     var firstFourFiths = Array(array.prefix(upTo: Int(Double(count) * 0.8)))
     let randomIndexRange = Int(Double(count) * 0.8)...(Int(Double(count) * 0.8) + (Int(Double(count) * 0.2) * 2))
