@@ -98,3 +98,4 @@ let agents = [
 //print(end.timeIntervalSince(start))
 //print(game.fitness.values.reduce(0, +))
 //runGeneration(previousFitness: 227.24)
+//playGame(withAgents: [Agent.fromArray([553,8371,3,5646,3791,8583,6187,680,9157])])
