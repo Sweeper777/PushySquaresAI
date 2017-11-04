@@ -1,4 +1,5 @@
 import Foundation
+import RealmSwift
 
 func printBoard(_ board: Array2D<Tile>) {
     for y in 0..<board.columns {
@@ -43,3 +44,43 @@ func printGame(_ game: Game) {
     printBoard(game.board)
 }
 
+func playGame(withAgents agents: [Agent]) {
+    let game = Game(map: .standard, playerCount: agents.count + 1)
+    //let start = Date()
+    var colors: [Color: Agent] = [.color3: agents[0]]
+    if agents.count > 1 {
+        colors[.color2] = agents[1]
+    }
+    if agents.count > 2 {
+        colors[.color4] = agents[2]
+    }
+    while game.players.filter({$0.lives > 0}).count >= 2 {
+        printGame(game)
+        
+        if game.currentPlayer.color == .color1 {
+            loop: repeat {
+                switch readLine()! {
+                case "r":
+                    game.moveRight()
+                    break loop
+                case "l":
+                    game.moveLeft()
+                    break loop
+                case "u":
+                    game.moveUp()
+                    break loop
+                case "d":
+                    game.moveDown()
+                    break loop
+                default: continue
+                }
+            } while true
+        } else {
+            let ai = GameAI(game: game.createCopy(), myColor: game.currentPlayer.color, agent: colors[game.currentPlayer.color]!)
+            game.moveInDirection(ai.getNextMove())
+        }
+    }
+    //let end = Date()
+    //print("time used: \(end.timeIntervalSince(start))")
+    printGame(game)
+}
