@@ -84,3 +84,10 @@ func playGame(withAgents agents: [Agent]) {
     //print("time used: \(end.timeIntervalSince(start))")
     printGame(game)
 }
+
+let agents = [
+    [9817,3256,2,6212,3272,4225,6744,2582,5886],
+    [9264,2083,3,2111,1915,4922,3956,397,3952],
+    [8420,9285,0,181,4669,5890,4306,4200,7995], // strongest
+    [9062,3260,0,2634,4669,8793,1705,2725,6083]
+    ].map { Agent.fromArray($0) }
