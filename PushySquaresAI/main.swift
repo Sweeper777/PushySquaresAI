@@ -97,3 +97,4 @@ let agents = [
 //let end = Date()
 //print(end.timeIntervalSince(start))
 //print(game.fitness.values.reduce(0, +))
+//runGeneration(previousFitness: 227.24)
