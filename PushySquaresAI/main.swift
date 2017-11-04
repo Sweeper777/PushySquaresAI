@@ -91,3 +91,9 @@ let agents = [
     [8420,9285,0,181,4669,5890,4306,4200,7995], // strongest
     [9062,3260,0,2634,4669,8793,1705,2725,6083]
     ].map { Agent.fromArray($0) }
+//let start = Date()
+//let game = AgentGame(agents: agents)
+//game.run(doPrint: true)
+//let end = Date()
+//print(end.timeIntervalSince(start))
+//print(game.fitness.values.reduce(0, +))
