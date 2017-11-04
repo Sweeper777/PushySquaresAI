@@ -118,3 +118,14 @@ let agents = [
 //ai = GameAI(game: movedDown, myColor: .color1, agent: .standard)
 //print(ai.evaluateHeuristics())
 
+//var prevFitness: Double = 229.5
+//for i in 1...3 {
+//    print("--------------")
+//    print("Starting Generation \(i)")
+//    print("-------------")
+//    prevFitness = runGeneration(previousFitness: prevFitness)
+//    print("--------------")
+//    print("Generation \(i) Ended")
+//    print("-------------")
+//}
+
