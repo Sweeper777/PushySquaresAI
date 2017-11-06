@@ -32,6 +32,10 @@ class AgentGame: GameDelegate {
         print("Starting game \(id)")
         let startDate = Date()
         while game.players.filter({ $0.lives > 0}).count >= 2 {
+            if colors[game.currentPlayer.color]!.isInvalidated {
+                game.killPlayer(game.currentPlayer.color)
+                continue
+            }
             let ai = GameAI(game: game.createCopy(), myColor: game.currentPlayer.color, agent: colors[game.currentPlayer.color]!)
             game.moveInDirection(ai.getNextMove())
             if doPrint {
