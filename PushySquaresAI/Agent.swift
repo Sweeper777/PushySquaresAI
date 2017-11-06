@@ -1,6 +1,8 @@
 import RealmSwift
 
 class Agent: Object {
+    dynamic var fitness = 0
+    dynamic var life = 10
     
     dynamic var wSelfLife = 0
     dynamic var wDiffLives = 0
