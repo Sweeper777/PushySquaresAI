@@ -41,16 +41,26 @@ class AgentGame: GameDelegate {
             if doPrint {
                 printGame(game)
             }
-                fitness = [:]
             if Date().timeIntervalSince(startDate) > 180 && !doPrint {
+                print("Ending game \(id)")
                 return
             }
-            fitness[colors[game.currentPlayer.color]!] = (fitness[colors[game.currentPlayer.color]!] ?? 0) + 1
         }
-//        let remainingPlayers = game.players.filter({ $0.lives > 0})
-//        if remainingPlayers.count == 1 {
-//            fitness[colors[remainingPlayers.first!.color]!] = 3 * remainingPlayers.first!.lives
-//        }
+        let remainingPlayers = game.players.filter({ $0.lives > 0})
+        if remainingPlayers.count == 1 {
+            fitness[colors[remainingPlayers.first!.color]!] = 3 * remainingPlayers.first!.lives
+            try! realm?.write {
+                for (key, value) in fitness {
+                    if !key.isInvalidated {
+                        key.fitness += value
+                    }
+                }
+            }
+            if let r = realm {
+                AgentManager.shared.makeAgentAvailable(colors[remainingPlayers.first!.color]!, won: true, realm: r)
+            }
+        }
+        print("Ending game \(id)")
     }
     
     func playerDidMakeMove(direction: Direction?, originalPositions: [Position], destroyedSquarePositions: [Position], greyedOutPositions: [Position], newSquareColor: Color?) {
