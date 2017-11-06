@@ -334,6 +334,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
@@ -341,6 +342,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2EB398776E28AEB5F6008717 /* Pods-PushySquaresAI.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = E9MW74DJ4Y;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks @executable_path/Realm/ @executable_path/RealmSwift/ @executable_path/Pods-PushySquaresAI/";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -352,6 +354,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 972B1AAAA12C0CEF6A8B8E04 /* Pods-PushySquaresAI.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = E9MW74DJ4Y;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks @executable_path/Realm/ @executable_path/RealmSwift/ @executable_path/Pods-PushySquaresAI/";
 				PRODUCT_NAME = "$(TARGET_NAME)";
