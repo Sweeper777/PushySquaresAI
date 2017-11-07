@@ -68,9 +68,12 @@ class AgentGame: GameDelegate {
     }
     
     func playerDidDie(color: Color) {
-//        let remainingPlayerCount = game.players.filter({$0.lives > 0}).count
-//        if remainingPlayerCount > 1 {
-//           fitness[colors[color]!] = 3 - remainingPlayerCount
-//        }
+        let remainingPlayerCount = game.players.filter({$0.lives > 0}).count
+        if remainingPlayerCount > 1 {
+           fitness[colors[color]!] = 3 - remainingPlayerCount
+        }
+        if let r = realm {
+            AgentManager.shared.makeAgentAvailable(colors[color]!, won: false, realm: r)
+        }
     }
 }
