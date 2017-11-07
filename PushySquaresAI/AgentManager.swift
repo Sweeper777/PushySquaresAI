@@ -64,4 +64,34 @@ class AgentManager {
             }
         }
     }
+    
+    func makeAgentAvailable(_ agent: Agent, won: Bool, realm: Realm) {
+        if agent.isInvalidated {
+            return
+        }
+        if agent.life <= 0 {
+            if let index = availableAgents.index(of: agent) {
+                availableAgents.remove(at: index)
+            }
+            if let index = breedableAgents.index(of: agent) {
+                breedableAgents.remove(at: index)
+            }
+            try! realm.write {
+                realm.delete(agent)
+            }
+            return
+        }
+        
+        availableAgents.append(agent)
+        if won {
+            breedableAgents.append(agent)
+            breedAgents(realm: realm)
+        } else {
+            try! realm.write {
+                agent.mutate()
+                agent.mutate()
+                agent.mutate()
+            }
+        }
+    }
 }
