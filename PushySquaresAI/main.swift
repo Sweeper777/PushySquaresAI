@@ -85,6 +85,44 @@ func playGame(withAgents agents: [Agent]) {
     printGame(game)
 }
 
+extension Agent {
+    func repair() {
+        if wOpponentInDangerAboveThreshold == 0 {
+            wOpponentInDangerAboveThreshold = Int(arc4random_uniform(10000))
+        }
+        if wSelfLife == 0 {
+            wSelfLife = Int(arc4random_uniform(10000))
+        }
+        if wDiffLives == 0 {
+            wDiffLives = Int(arc4random_uniform(10000))
+        }
+        if wSelfInDanger == 0 {
+            wSelfInDanger = Int(arc4random_uniform(10000))
+        }
+        if wOpponentSpread == 0 {
+            wOpponentSpread = Int(arc4random_uniform(10000))
+        }
+        if wSelfSpreadAboveThreshold == 0 {
+            wSelfSpreadAboveThreshold = Int(arc4random_uniform(10000))
+        }
+        if wSelfSpreadBelowThreshold == 0 {
+            wSelfSpreadBelowThreshold = Int(arc4random_uniform(10000))
+        }
+        if wOpponentInDangerBelowThreshold == 0 {
+            wOpponentInDangerBelowThreshold = Int(arc4random_uniform(10000))
+        }
+    }
+}
+
+func regenerateBrokenAgents() {
+    let realm = try! Realm()
+    try! realm.write {
+        for object in realm.objects(Agent.self) {
+            object.repair()
+        }
+    }
+}
+
 let agents = [
     [9817,3256,2,6212,3272,4225,6744,2582,5886],
     [9264,2083,3,2111,1915,4922,3956,397,3952],
@@ -129,3 +167,4 @@ let agents = [
 //    print("-------------")
 //}
 
+AgentManager.shared.makeAgentsPlayGame(realm: try! Realm())
