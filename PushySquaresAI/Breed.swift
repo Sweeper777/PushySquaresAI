@@ -6,16 +6,19 @@ extension Agent {
         let a2 = agent2.toArray()
         var newArray = Array(repeating: 0, count: a2.count)
         var indices = Array(a1.indices)
-        let indicesFrom1 = [
-            randomFromArrayAndRemove(&indices),
-            randomFromArrayAndRemove(&indices),
-            randomFromArrayAndRemove(&indices)
-        ]
-        let indicesFrom2 = [
-            randomFromArrayAndRemove(&indices),
-            randomFromArrayAndRemove(&indices),
-            randomFromArrayAndRemove(&indices)
-        ]
+        
+        let fitness1 = UInt32((Double(agent1.fitness) / Double(10 - agent1.life)) * 1000)
+        let fitness2 = UInt32((Double(agent2.fitness) / Double(10 - agent2.life)) * 1000)
+        var indicesFrom1 = [Int]()
+        var indicesFrom2 = [Int]()
+        while indices.count > 3 {
+            if arc4random_uniform(fitness1 + fitness2) < fitness1 {
+                indicesFrom1.append(randomFromArrayAndRemove(&indices))
+            } else {
+                indicesFrom2.append(randomFromArrayAndRemove(&indices))
+            }
+        }
+        
         for index in indicesFrom1 {
             newArray[index] = a1[index]
         }
