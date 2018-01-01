@@ -7,10 +7,4 @@ class AgentManager {
     var gamesPlayed = 0
     
     static let shared = AgentManager()
-    
-    private init() {
-        let realm = try! Realm()
-        availableAgents = Array(realm.objects(Agent.self))
-    }
-    
 }
