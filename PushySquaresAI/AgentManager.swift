@@ -50,18 +50,4 @@ class AgentManager {
         }
     }
     
-    func breedAgents(realm: Realm) {
-        while breedableAgents.count >= 2 {
-            let parents = [
-                randomFromArrayAndRemove(&breedableAgents),
-                randomFromArrayAndRemove(&breedableAgents),
-                ]
-            try! realm.write {
-                let offspring = Agent.breed(agent1: parents[0], agent2: parents[1])
-                realm.add(offspring)
-                offspring.mutate()
-                self.availableAgents.append(offspring)
-            }
-        }
-    }
 }
