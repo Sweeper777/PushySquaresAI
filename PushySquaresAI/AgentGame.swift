@@ -1,14 +1,9 @@
 import Foundation
-import RealmSwift
-
 class AgentGame: GameDelegate {
     let colors: [Color: Agent]
     var fitness: [Agent: Int]
     let agents: [Agent]
     let game: Game
-    let id: Int
-    var realm: Realm?
-    static var nextID = 1
     
     init(agents: [Agent]) {
         game = Game(map: .standard, playerCount: agents.count)
