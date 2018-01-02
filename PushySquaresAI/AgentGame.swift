@@ -22,8 +22,6 @@ class AgentGame: GameDelegate {
         self.colors = tempColors
         self.agents = agents
         self.fitness = [:]
-        self.id = AgentGame.nextID
-        AgentGame.nextID += 1
         game.delegate = self
     }
     
