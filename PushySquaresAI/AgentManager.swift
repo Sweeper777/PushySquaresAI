@@ -1,4 +1,0 @@
-import RealmSwift
-
-class AgentManager {
-}
