@@ -27,18 +27,17 @@ class AgentGame: GameDelegate {
         game.delegate = self
     }
     
-    func run(doPrint: Bool = false, realm: Realm? = nil) {
-        self.realm = realm
-        print("Starting game \(id)")
+    func run(print: Bool = false) {
+        // For two players only!
         let startDate = Date()
         while game.players.filter({ $0.lives > 0}).count >= 2 {
             let ai = GameAI(game: game.createCopy(), myColor: game.currentPlayer.color, agent: colors[game.currentPlayer.color]!)
             game.moveInDirection(ai.getNextMove())
-            if doPrint {
+            if print {
                 printGame(game)
             }
+            if Date().timeIntervalSince(startDate) > 180 && !print {
                 fitness = [:]
-            if Date().timeIntervalSince(startDate) > 180 && !doPrint {
                 return
             }
             fitness[colors[game.currentPlayer.color]!] = (fitness[colors[game.currentPlayer.color]!] ?? 0) + 1
