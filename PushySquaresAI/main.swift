@@ -86,14 +86,14 @@ func playGame(withAgents agents: [Agent]) {
 }
 
 let agents = [
-    [9817,3256,2,6212,3272,4225,6744,2582,5886],
     [9264,2083,3,2111,1915,4922,3956,397,3952],
+    [6405,7827,5,1713,1842,3378,1342,4598,4435],
     [8420,9285,0,181,4669,5890,4306,4200,7995], // strongest
-    [9062,3260,0,2634,4669,8793,1705,2725,6083]
+    [9062,3260,0,2634,4669,8793,1705,2725,6083],
     ].map { Agent.fromArray($0) }
 //let start = Date()
-//let game = AgentGame(agents: agents)
-//game.run(doPrint: true)
+//let game = AgentGame(agents: agents, map: Map(file: "grey2"))
+//game.run(print: true)
 //let end = Date()
 //print(end.timeIntervalSince(start))
 //print(game.fitness.values.reduce(0, +))
