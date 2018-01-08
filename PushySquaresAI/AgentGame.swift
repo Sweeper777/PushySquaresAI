@@ -5,8 +5,8 @@ class AgentGame: GameDelegate {
     let agents: [Agent]
     let game: Game
     
-    init(agents: [Agent]) {
-        game = Game(map: .standard, playerCount: agents.count)
+    init(agents: [Agent], map: Map) {
+        game = Game(map: map, playerCount: agents.count)
         var tempColors: [Color: Agent] = [.color1: agents[0], .color3: agents[1]]
         if agents.count > 2 {
             tempColors[.color2] = agents[2]
