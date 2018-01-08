@@ -24,8 +24,9 @@ func runGeneration(previousFitness: Double?) -> Double {
                 randomFromArrayAndRemove(&availableAgents),
             ]
             agentPlayers.insert(agent, at: j)
-            let game = AgentGame(agents: agentPlayers)
-            print("game \(i) starts")
+            let map = Array(maps.keys)[Int(arc4random_uniform(UInt32(maps.count)))]
+            let game = AgentGame(agents: agentPlayers, map: maps[map]!)
+            print("game \(i) starts, Map: \(map)")
             game.run()
             print("game \(i) ended")
             fitnesses[agent]! += game.fitness[agent] ?? 0
