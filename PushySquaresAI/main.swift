@@ -129,3 +129,10 @@ let agents = [
 //    print("-------------")
 //}
 
+//let realm = try! Realm()
+//try! realm.write {
+//    for _ in 0..<50 {
+//        let agent = Agent.randomAgent()
+//        realm.add(agent)
+//    }
+//}
