@@ -4,6 +4,12 @@ func runGeneration(previousFitness: Double?) -> Double {
     let realm = try! Realm()
     let allAgents = Array(realm.objects(Agent.self))
     var fitnesses = [Agent: Int]()
+    let maps = ["standard": Map(file: "standard"),
+                "zigzag": Map(file: "zigzag"),
+                "grey2": Map(file: "grey2"),
+                "grey1": Map(file: "grey1"),
+                "quick": Map(file: "quick"),
+                ]
     for agent in allAgents {
         fitnesses[agent] = 0
     }
