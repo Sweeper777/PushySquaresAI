@@ -21,7 +21,6 @@ class AgentGame: GameDelegate {
     }
     
     func run(print: Bool = false) {
-        // For two players only!
         let startDate = Date()
         while game.players.filter({ $0.lives > 0}).count >= 2 {
             let ai = GameAI(game: game.createCopy(), myColor: game.currentPlayer.color, agent: colors[game.currentPlayer.color]!)
