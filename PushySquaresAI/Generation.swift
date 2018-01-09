@@ -65,7 +65,7 @@ func runGeneration(previousFitness: Double?) -> Double {
         let mutationRate: Int
         if previousFitness == nil {
             mutationRate = 4
-        } else if abs(previousFitness! - currentFitness) > 10 && currentFitness > previousFitness! {
+        } else if abs(previousFitness! - currentFitness) > 10 && currentFitness > previousFitness!{
             mutationRate = 1
         } else {
             mutationRate = 4
