@@ -10,13 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PushySquaresAI/GameAI.swift"
-            timestampString = "536913153.132748"
+            timestampString = "539463778.265349"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "113"
             endingLineNumber = "113"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "evaluateHeuristics()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
