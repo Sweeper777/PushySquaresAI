@@ -118,16 +118,16 @@ let agents = [
 //ai = GameAI(game: movedDown, myColor: .color1, agent: .standard)
 //print(ai.evaluateHeuristics())
 
-var prevFitness: Double = 170.22
-for i in 1...3 {
-    print("--------------")
-    print("Starting Generation \(i)")
-    print("-------------")
-    prevFitness = runGeneration(previousFitness: prevFitness)
-    print("--------------")
-    print("Generation \(i) Ended")
-    print("-------------")
-}
+//var prevFitness: Double = 170.22
+//for i in 1...3 {
+//    print("--------------")
+//    print("Starting Generation \(i)")
+//    print("-------------")
+//    prevFitness = runGeneration(previousFitness: prevFitness)
+//    print("--------------")
+//    print("Generation \(i) Ended")
+//    print("-------------")
+//}
 
 //let realm = try! Realm()
 //try! realm.write {
@@ -136,3 +136,15 @@ for i in 1...3 {
 //        realm.add(agent)
 //    }
 //}
+
+@discardableResult
+func shell(_ args: String...) -> Int32 {
+    let task = Process()
+    task.launchPath = "/usr/bin/env"
+    task.arguments = args
+    task.launch()
+    task.waitUntilExit()
+    return task.terminationStatus
+}
+
+shell("printf", "'\\e[8;50;100t'")
