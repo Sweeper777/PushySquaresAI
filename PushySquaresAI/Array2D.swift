@@ -28,9 +28,18 @@ public struct Array2D<T>: Sequence, ExpressibleByArrayLiteral{
         set { self[position.x, position.y] = newValue }
     }
     
+    public subscript(safe position: Position) -> T? {
+        get {
+            if (0..<columns).contains(position.x) && (0..<rows).contains(position.y) {
+                return self[position]
+            }
+            return nil
+        }
+    }
+    
     public typealias Iterator = Array<T>.Iterator
     public typealias SubSequence = Array<T>.SubSequence
-    //    public typealias Element = [T]
+//    public typealias Element = [T]
     public func makeIterator() -> Iterator {
         return array.makeIterator()
     }
@@ -95,23 +104,31 @@ public struct Array2D<T>: Sequence, ExpressibleByArrayLiteral{
         }
         return indices
     }
-}
-
-extension Array2D where T == Tile {
-    public func indicesOf(color: Color) -> [Position] {
-        return self.indicesOf {
-            item in
-            switch item {
-            case .square(let c):
-                return c == color
-            default:
-                return false
+    
+    public func firstIndex(where predicate: (T) -> Bool) -> Position? {
+        for x in 0..<columns {
+            for y in 0..<rows {
+                if predicate(self[x, y]) {
+                    return Position(x, y)
+                }
             }
         }
+        return nil
     }
 }
 
-public struct Position: Hashable {
+public struct Position: Hashable, RawRepresentable {
+    public init?(rawValue: Int) {
+        x = rawValue / 1000
+        y = rawValue % 1000
+    }
+
+    public var rawValue: Int {
+        x * 1000 + y
+    }
+
+    public typealias RawValue = Int
+
     public let x: Int
     public let y: Int
     
@@ -140,13 +157,22 @@ public struct Position: Hashable {
         self.y = y
     }
     
-    public var hashValue: Int {
-        return x * 1000 + y
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(x)
+        hasher.combine(y)
     }
 }
 
 extension Position: CustomStringConvertible {
     public var description: String {
         return "(\(x), \(y))"
+    }
+}
+
+extension Array2D where Element == BoardState {
+    public func indices(ofColor color: Color) -> [Position] {
+        indicesOf(itemsWhere: {
+            $0 == .square(color)
+        })
     }
 }

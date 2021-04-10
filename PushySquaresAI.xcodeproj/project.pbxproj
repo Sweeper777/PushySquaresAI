@@ -9,13 +9,23 @@
 /* Begin PBXBuildFile section */
 		5122ADE15E550A1E3DA462B4 /* Pods_PushySquaresAI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69921A5ABCA386FC07CDED93 /* Pods_PushySquaresAI.framework */; };
 		5A2660041F99DAC900CABB41 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2660031F99DAC900CABB41 /* main.swift */; };
-		5A26600F1F99DB1C00CABB41 /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A26600A1F99DB1C00CABB41 /* Array2D.swift */; };
-		5A2660101F99DB1C00CABB41 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A26600B1F99DB1C00CABB41 /* Game.swift */; };
-		5A2660111F99DB1C00CABB41 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A26600C1F99DB1C00CABB41 /* Map.swift */; };
-		5A2660121F99DB1C00CABB41 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A26600D1F99DB1C00CABB41 /* Player.swift */; };
-		5A2660131F99DB1C00CABB41 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A26600E1F99DB1C00CABB41 /* Tile.swift */; };
-		5A2660151F99DB5E00CABB41 /* GameAI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2660141F99DB5E00CABB41 /* GameAI.swift */; };
-		5A2660171F99DC8B00CABB41 /* GameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2660161F99DC8B00CABB41 /* GameDelegate.swift */; };
+		5A5CFAB726212B4000C66679 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5CFAAB26212B3F00C66679 /* Player.swift */; };
+		5A5CFAB826212B4000C66679 /* MapTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5CFAAC26212B3F00C66679 /* MapTile.swift */; };
+		5A5CFAB926212B4000C66679 /* BoardProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5CFAAD26212B4000C66679 /* BoardProvider.swift */; };
+		5A5CFABA26212B4000C66679 /* BoardState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5CFAAE26212B4000C66679 /* BoardState.swift */; };
+		5A5CFABB26212B4000C66679 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5CFAAF26212B4000C66679 /* Color.swift */; };
+		5A5CFABC26212B4000C66679 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5CFAB026212B4000C66679 /* Direction.swift */; };
+		5A5CFABD26212B4000C66679 /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5CFAB126212B4000C66679 /* Array2D.swift */; };
+		5A5CFABE26212B4000C66679 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5CFAB226212B4000C66679 /* Game.swift */; };
+		5A5CFAC026212B4000C66679 /* GameResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5CFAB426212B4000C66679 /* GameResult.swift */; };
+		5A5CFAC126212B4000C66679 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5CFAB526212B4000C66679 /* Map.swift */; };
+		5A5CFAC226212B4000C66679 /* MoveResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5CFAB626212B4000C66679 /* MoveResult.swift */; };
+		5A5CFACA26212C9900C66679 /* GameAI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5CFAC926212C9900C66679 /* GameAI.swift */; };
+		5A5CFAD22621493500C66679 /* grey1.map in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5A5CFAD02621489C00C66679 /* grey1.map */; };
+		5A5CFAD32621493500C66679 /* grey2.map in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5A5CFACE2621489C00C66679 /* grey2.map */; };
+		5A5CFAD42621493500C66679 /* quick.map in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5A5CFACD2621489C00C66679 /* quick.map */; };
+		5A5CFAD52621493500C66679 /* standard.map in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5A5CFAD12621489C00C66679 /* standard.map */; };
+		5A5CFAD62621493500C66679 /* zigzag.map in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5A5CFACF2621489C00C66679 /* zigzag.map */; };
 		5A6A0CF91F9B8F930075FDB2 /* Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6A0CF81F9B8F930075FDB2 /* Agent.swift */; };
 		5A6A0D051F9BAF7A0075FDB2 /* AgentGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6A0D041F9BAF7A0075FDB2 /* AgentGame.swift */; };
 		5A6A0D071F9BB5400075FDB2 /* Generation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6A0D061F9BB5400075FDB2 /* Generation.swift */; };
@@ -29,6 +39,11 @@
 			dstPath = usr/share/man/man1;
 			dstSubfolderSpec = 0;
 			files = (
+				5A5CFAD22621493500C66679 /* grey1.map in CopyFiles */,
+				5A5CFAD32621493500C66679 /* grey2.map in CopyFiles */,
+				5A5CFAD42621493500C66679 /* quick.map in CopyFiles */,
+				5A5CFAD52621493500C66679 /* standard.map in CopyFiles */,
+				5A5CFAD62621493500C66679 /* zigzag.map in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -38,13 +53,23 @@
 		2EB398776E28AEB5F6008717 /* Pods-PushySquaresAI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PushySquaresAI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PushySquaresAI/Pods-PushySquaresAI.debug.xcconfig"; sourceTree = "<group>"; };
 		5A2660001F99DAC900CABB41 /* PushySquaresAI */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PushySquaresAI; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A2660031F99DAC900CABB41 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		5A26600A1F99DB1C00CABB41 /* Array2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array2D.swift; sourceTree = "<group>"; };
-		5A26600B1F99DB1C00CABB41 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
-		5A26600C1F99DB1C00CABB41 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
-		5A26600D1F99DB1C00CABB41 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		5A26600E1F99DB1C00CABB41 /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
-		5A2660141F99DB5E00CABB41 /* GameAI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameAI.swift; sourceTree = "<group>"; };
-		5A2660161F99DC8B00CABB41 /* GameDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDelegate.swift; sourceTree = "<group>"; };
+		5A5CFAAB26212B3F00C66679 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		5A5CFAAC26212B3F00C66679 /* MapTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTile.swift; sourceTree = "<group>"; };
+		5A5CFAAD26212B4000C66679 /* BoardProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardProvider.swift; sourceTree = "<group>"; };
+		5A5CFAAE26212B4000C66679 /* BoardState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardState.swift; sourceTree = "<group>"; };
+		5A5CFAAF26212B4000C66679 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		5A5CFAB026212B4000C66679 /* Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
+		5A5CFAB126212B4000C66679 /* Array2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array2D.swift; sourceTree = "<group>"; };
+		5A5CFAB226212B4000C66679 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		5A5CFAB426212B4000C66679 /* GameResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameResult.swift; sourceTree = "<group>"; };
+		5A5CFAB526212B4000C66679 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
+		5A5CFAB626212B4000C66679 /* MoveResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveResult.swift; sourceTree = "<group>"; };
+		5A5CFAC926212C9900C66679 /* GameAI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameAI.swift; sourceTree = "<group>"; };
+		5A5CFACD2621489C00C66679 /* quick.map */ = {isa = PBXFileReference; explicitFileType = text; fileEncoding = 4; path = quick.map; sourceTree = "<group>"; };
+		5A5CFACE2621489C00C66679 /* grey2.map */ = {isa = PBXFileReference; explicitFileType = text; fileEncoding = 4; path = grey2.map; sourceTree = "<group>"; };
+		5A5CFACF2621489C00C66679 /* zigzag.map */ = {isa = PBXFileReference; explicitFileType = text; fileEncoding = 4; path = zigzag.map; sourceTree = "<group>"; };
+		5A5CFAD02621489C00C66679 /* grey1.map */ = {isa = PBXFileReference; explicitFileType = text; fileEncoding = 4; path = grey1.map; sourceTree = "<group>"; };
+		5A5CFAD12621489C00C66679 /* standard.map */ = {isa = PBXFileReference; explicitFileType = text; fileEncoding = 4; path = standard.map; sourceTree = "<group>"; };
 		5A6A0CEC1F9B8D650075FDB2 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../Library/Developer/Xcode/DerivedData/PushySquaresAI-edlihehycgringfhgtktnywpetsr/Build/Products/Debug/Realm/Realm.framework"; sourceTree = "<group>"; };
 		5A6A0CED1F9B8D650075FDB2 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../Library/Developer/Xcode/DerivedData/PushySquaresAI-edlihehycgringfhgtktnywpetsr/Build/Products/Debug/RealmSwift/RealmSwift.framework"; sourceTree = "<group>"; };
 		5A6A0CF21F9B8F300075FDB2 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../Desktop/realm-swift-3.0.0/osx/swift-4.0/Realm.framework"; sourceTree = "<group>"; };
@@ -92,14 +117,24 @@
 		5A2660021F99DAC900CABB41 /* PushySquaresAI */ = {
 			isa = PBXGroup;
 			children = (
-				5A2660161F99DC8B00CABB41 /* GameDelegate.swift */,
-				5A26600A1F99DB1C00CABB41 /* Array2D.swift */,
-				5A26600B1F99DB1C00CABB41 /* Game.swift */,
-				5A26600C1F99DB1C00CABB41 /* Map.swift */,
-				5A26600D1F99DB1C00CABB41 /* Player.swift */,
-				5A26600E1F99DB1C00CABB41 /* Tile.swift */,
+				5A5CFAD02621489C00C66679 /* grey1.map */,
+				5A5CFACE2621489C00C66679 /* grey2.map */,
+				5A5CFACD2621489C00C66679 /* quick.map */,
+				5A5CFAD12621489C00C66679 /* standard.map */,
+				5A5CFACF2621489C00C66679 /* zigzag.map */,
+				5A5CFAB126212B4000C66679 /* Array2D.swift */,
+				5A5CFAAD26212B4000C66679 /* BoardProvider.swift */,
+				5A5CFAAE26212B4000C66679 /* BoardState.swift */,
+				5A5CFAAF26212B4000C66679 /* Color.swift */,
+				5A5CFAB026212B4000C66679 /* Direction.swift */,
+				5A5CFAB226212B4000C66679 /* Game.swift */,
+				5A5CFAC926212C9900C66679 /* GameAI.swift */,
+				5A5CFAB426212B4000C66679 /* GameResult.swift */,
+				5A5CFAB526212B4000C66679 /* Map.swift */,
+				5A5CFAAC26212B3F00C66679 /* MapTile.swift */,
+				5A5CFAB626212B4000C66679 /* MoveResult.swift */,
+				5A5CFAAB26212B3F00C66679 /* Player.swift */,
 				5A2660031F99DAC900CABB41 /* main.swift */,
-				5A2660141F99DB5E00CABB41 /* GameAI.swift */,
 				5A6A0CF81F9B8F930075FDB2 /* Agent.swift */,
 				5A6A0D041F9BAF7A0075FDB2 /* AgentGame.swift */,
 				5A6A0D061F9BB5400075FDB2 /* Generation.swift */,
@@ -142,7 +177,6 @@
 				5A265FFC1F99DAC900CABB41 /* Sources */,
 				5A265FFD1F99DAC900CABB41 /* Frameworks */,
 				5A265FFE1F99DAC900CABB41 /* CopyFiles */,
-				4E69B0AE9C24F08BB5F78861 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -175,6 +209,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 5A265FF71F99DAC900CABB41;
@@ -188,34 +223,22 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4E69B0AE9C24F08BB5F78861 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PushySquaresAI/Pods-PushySquaresAI-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		6D965D635F8395708F270F77 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PushySquaresAI-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -226,17 +249,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A6A0D091F9BDF3C0075FDB2 /* Breed.swift in Sources */,
+				5A5CFABE26212B4000C66679 /* Game.swift in Sources */,
 				5A2660041F99DAC900CABB41 /* main.swift in Sources */,
-				5A2660101F99DB1C00CABB41 /* Game.swift in Sources */,
-				5A2660171F99DC8B00CABB41 /* GameDelegate.swift in Sources */,
+				5A5CFAB926212B4000C66679 /* BoardProvider.swift in Sources */,
+				5A5CFAB826212B4000C66679 /* MapTile.swift in Sources */,
+				5A5CFABB26212B4000C66679 /* Color.swift in Sources */,
 				5A6A0D071F9BB5400075FDB2 /* Generation.swift in Sources */,
+				5A5CFABD26212B4000C66679 /* Array2D.swift in Sources */,
+				5A5CFAB726212B4000C66679 /* Player.swift in Sources */,
+				5A5CFABA26212B4000C66679 /* BoardState.swift in Sources */,
+				5A5CFAC026212B4000C66679 /* GameResult.swift in Sources */,
 				5A6A0CF91F9B8F930075FDB2 /* Agent.swift in Sources */,
-				5A2660151F99DB5E00CABB41 /* GameAI.swift in Sources */,
-				5A2660111F99DB1C00CABB41 /* Map.swift in Sources */,
-				5A2660131F99DB1C00CABB41 /* Tile.swift in Sources */,
+				5A5CFAC226212B4000C66679 /* MoveResult.swift in Sources */,
 				5A6A0D051F9BAF7A0075FDB2 /* AgentGame.swift in Sources */,
-				5A2660121F99DB1C00CABB41 /* Player.swift in Sources */,
-				5A26600F1F99DB1C00CABB41 /* Array2D.swift in Sources */,
+				5A5CFACA26212C9900C66679 /* GameAI.swift in Sources */,
+				5A5CFAC126212B4000C66679 /* Map.swift in Sources */,
+				5A5CFABC26212B4000C66679 /* Direction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +323,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -343,6 +372,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -354,7 +384,7 @@
 				DEVELOPMENT_TEAM = E9MW74DJ4Y;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks @executable_path/Realm/ @executable_path/RealmSwift/ @executable_path/Pods-PushySquaresAI/";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -366,7 +396,7 @@
 				DEVELOPMENT_TEAM = E9MW74DJ4Y;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks @executable_path/Realm/ @executable_path/RealmSwift/ @executable_path/Pods-PushySquaresAI/";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

@@ -14,4 +14,8 @@ public class Player {
         self.lives = lives
         self.color = color
     }
+    
+    func createCopy() -> Player {
+        return Player(turnsUntilNewSquare: self.turnsUntilNewSquare, lives: self.lives, color: self.color)
+    }
 }
