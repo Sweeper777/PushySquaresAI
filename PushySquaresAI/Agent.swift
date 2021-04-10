@@ -55,6 +55,20 @@ extension Agent {
         agent.wOpponentInDangerAboveThreshold = arr[8]
         return agent
     }
+
+    func createCopy() -> Agent {
+        let agent = Agent()
+        agent.wSelfLife = wSelfLife
+        agent.wDiffLives = wDiffLives
+        agent.wSquareThreshold = wSquareThreshold
+        agent.wSelfSpreadBelowThreshold = wSelfSpreadBelowThreshold
+        agent.wSelfSpreadAboveThreshold = wSelfSpreadAboveThreshold
+        agent.wOpponentSpread = wOpponentSpread
+        agent.wSelfInDanger = wSelfInDanger
+        agent.wOpponentInDangerBelowThreshold = wOpponentInDangerBelowThreshold
+        agent.wOpponentInDangerAboveThreshold = wOpponentInDangerAboveThreshold
+        return agent
+    }
 }
 
 extension GameAI {

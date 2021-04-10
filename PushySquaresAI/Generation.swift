@@ -1,39 +1,49 @@
 import RealmSwift
 
-func runGeneration(previousFitness: Double?) -> Double {
+extension Map {
+    init?(name: String) {
+        guard let url = URL(string: "file:///Users/mulangsu/Documents/PushySquaresAI/PushySquaresAI")?
+                .appendingPathComponent(name).appendingPathExtension("map") else {
+            return nil
+        }
+        self.init(file: url)
+    }
+}
+
+let dispatchQueue = DispatchQueue(label: "agentQueue", qos: .userInitiated, attributes: .concurrent)
+
+func runGeneration(previousFitness: Double?, mentors: [Agent]) -> Double {
     let realm = try! Realm()
     let allAgents = Array(realm.objects(Agent.self))
+    let agentCopies = allAgents.map { ($0.createCopy(), $0) }
+    let copiesDictionary = Dictionary(uniqueKeysWithValues: agentCopies)
     var fitnesses = [Agent: Int]()
-    let maps = ["standard": Map(file: "standard"),
-                "zigzag": Map(file: "zigzag"),
-                "grey2": Map(file: "grey2"),
-                "grey1": Map(file: "grey1"),
-                "quick": Map(file: "quick"),
+    let maps = ["standard": Map(name: "standard")!,
+//                "zigzag": Map(name: "zigzag")!,
+//                "grey2": Map(name: "grey2")!,
+//                "grey1": Map(name: "grey1")!,
+//                "quick": Map(name: "quick")!,
                 ]
-    for agent in allAgents {
-        fitnesses[agent] = 0
-    }
-    
-    var i = 1
-    for agent in allAgents {
-        for j in 0..<4 {
-            var availableAgents = allAgents.filter({ $0 != agent })
-            var agentPlayers = [
-                randomFromArrayAndRemove(&availableAgents),
-                randomFromArrayAndRemove(&availableAgents),
-                randomFromArrayAndRemove(&availableAgents),
-            ]
-            agentPlayers.insert(agent, at: j)
-            let map = Array(maps.keys)[Int(arc4random_uniform(UInt32(maps.count)))]
-            let game = AgentGame(agents: agentPlayers, map: maps[map]!)
-            print("game \(i) starts, Map: \(map)")
+    let dispatchGroup = DispatchGroup()
+    dispatchGroup.enter()
+    dispatchQueue.async {
+        DispatchQueue.concurrentPerform(iterations: agentCopies.count) { i in
+            let agent = agentCopies[i].0
+            var agentPlayers = mentors
+            agentPlayers.insert(agent, at: Int.random(in: 0..<4))
+            let (mapName, map) = maps.randomElement()!
+            let game = AgentGame(agents: agentPlayers, map: map)
+            print("game \(i) starts, Map: \(mapName)")
             game.run()
             print("game \(i) ended")
-            fitnesses[agent]! += game.fitness[agent] ?? 0
-            i += 1
+            let fitnessGained = game.fitness[agent] ?? 0
+            fitnesses[copiesDictionary[agent]!] = fitnessGained
         }
+        dispatchGroup.leave()
     }
-    
+
+    dispatchGroup.wait()
+
     let sorted = fitnesses.sorted { (a, b) -> Bool in
         return a.value > b.value
     }
