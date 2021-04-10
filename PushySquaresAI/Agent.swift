@@ -2,15 +2,15 @@ import RealmSwift
 
 class Agent: Object {
     
-    dynamic var wSelfLife = 0
-    dynamic var wDiffLives = 0
-    dynamic var wSquareThreshold = 0
-    dynamic var wSelfSpreadBelowThreshold = 0
-    dynamic var wSelfSpreadAboveThreshold = 0
-    dynamic var wOpponentSpread = 0
-    dynamic var wSelfInDanger = 0
-    dynamic var wOpponentInDangerBelowThreshold = 0
-    dynamic var wOpponentInDangerAboveThreshold = 0
+    @objc dynamic var wSelfLife = 0
+    @objc dynamic var wDiffLives = 0
+    @objc dynamic var wSquareThreshold = 0
+    @objc dynamic var wSelfSpreadBelowThreshold = 0
+    @objc dynamic var wSelfSpreadAboveThreshold = 0
+    @objc dynamic var wOpponentSpread = 0
+    @objc dynamic var wSelfInDanger = 0
+    @objc dynamic var wOpponentInDangerBelowThreshold = 0
+    @objc dynamic var wOpponentInDangerAboveThreshold = 0
 }
 
 extension Agent {
@@ -30,15 +30,15 @@ extension Agent {
     
     static func randomAgent() -> Agent {
         let agent = Agent()
-        agent.wSelfLife = Int(arc4random_uniform(10000))
-        agent.wDiffLives = Int(arc4random_uniform(10000))
-        agent.wSquareThreshold = Int(arc4random_uniform(6))
-        agent.wSelfSpreadBelowThreshold = Int(arc4random_uniform(10000))
-        agent.wSelfSpreadAboveThreshold = Int(arc4random_uniform(10000))
-        agent.wOpponentSpread = Int(arc4random_uniform(10000))
-        agent.wSelfInDanger = Int(arc4random_uniform(10000))
-        agent.wOpponentInDangerBelowThreshold = Int(arc4random_uniform(10000))
-        agent.wOpponentInDangerAboveThreshold = Int(arc4random_uniform(10000))
+        agent.wSelfLife = Int.random(in: 0..<10000)
+        agent.wDiffLives = Int.random(in: 0..<10000)
+        agent.wSquareThreshold = Int.random(in: 0..<6)
+        agent.wSelfSpreadBelowThreshold = Int.random(in: 0..<10000)
+        agent.wSelfSpreadAboveThreshold = Int.random(in: 0..<10000)
+        agent.wOpponentSpread = Int.random(in: 0..<10000)
+        agent.wSelfInDanger = Int.random(in: 0..<10000)
+        agent.wOpponentInDangerBelowThreshold = Int.random(in: 0..<10000)
+        agent.wOpponentInDangerAboveThreshold = Int.random(in: 0..<10000)
         return agent
     }
     

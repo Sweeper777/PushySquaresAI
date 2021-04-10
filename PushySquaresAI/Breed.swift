@@ -30,7 +30,7 @@ extension Agent {
 }
 
 func randomFromArrayAndRemove<T>(_ a: inout [T]) -> T {
-    let randomNumber = Int(arc4random_uniform(UInt32(a.count)))
+    let randomNumber = Int.random(in: 0..<a.count)
     let item = a[randomNumber]
     a.remove(at: randomNumber)
     return item

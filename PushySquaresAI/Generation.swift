@@ -48,7 +48,7 @@ func runGeneration(previousFitness: Double?) -> Double {
     
     let toBeBred = select(15, from: sorted).map { $0.key }
     let toBeKilled = sorted.map { $0.key }.filter { !toBeBred.contains($0) }
-    let currentFitness = Double(fitnesses.values.reduce(0, +)) / Double(fitnesses.values.count)
+    let currentFitness = Double(sorted.map(\.value)[sorted.count / 2])
     try! realm.write {
         for agent in toBeKilled {
             realm.delete(agent)
@@ -56,8 +56,8 @@ func runGeneration(previousFitness: Double?) -> Double {
         print("Removed low fitness agents")
         var offsprings = [Agent]()
         for _ in 0..<toBeKilled.count {
-            let father = toBeBred[Int(arc4random_uniform(UInt32(toBeBred.count)))]
-            let mother = toBeBred[Int(arc4random_uniform(UInt32(toBeBred.count)))]
+            let father = toBeBred.randomElement()!
+            let mother = toBeBred.randomElement()!
             let offspring = Agent.breed(agent1: father, agent2: mother)
             realm.add(offspring)
             offsprings.append(offspring)
@@ -96,7 +96,7 @@ func select<T>(_ count: Int, from array: [T]) -> [T] {
 
 extension Agent {
     func toArray() -> [Int] {
-        return [
+        [
          wSelfLife,
          wDiffLives,
          wSquareThreshold,
@@ -111,7 +111,6 @@ extension Agent {
     
     func mutate() {
         func mutateProperty(_ property: inout Int) {
-            property = Int(Double(property) * (arc4random_uniform(2) == 0 ? 1.1 : 0.9))
         }
         switch arc4random_uniform(8) {
         case 0:
