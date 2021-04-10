@@ -34,6 +34,10 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol RLMDate @end
 /// :nodoc:
 @protocol RLMData @end
+/// :nodoc:
+@protocol RLMDecimal128 @end
+/// :nodoc:
+@protocol RLMObjectId @end
 
 /// :nodoc:
 @interface NSNumber ()<RLMInt, RLMBool, RLMDouble, RLMFloat>
@@ -86,6 +90,11 @@ NS_ASSUME_NONNULL_BEGIN
  Indicates whether this property is optional.
  */
 @property (nonatomic, readonly) BOOL optional;
+
+/**
+ Indicates whether this property is an array.
+ */
+@property (nonatomic, readonly) BOOL array;
 
 #pragma mark - Methods
 

@@ -18,7 +18,7 @@
 
 #import <Realm/RLMConstants.h>
 
-/// A token originating from the Realm Object Server.
+/// A token originating from MongoDB Realm.
 typedef NSString* RLMServerToken;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -26,11 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// A user info key for use with `RLMSyncErrorClientResetError`.
 extern NSString *const kRLMSyncPathOfRealmBackupCopyKey;
 
-/// A user info key for use with `RLMSyncErrorClientResetError`.
-extern NSString *const kRLMSyncInitiateClientResetBlockKey;
-
-/// A user info key for use with `RLMSyncErrorPermissionDeniedError`.
-extern NSString *const kRLMSyncInitiateDeleteRealmBlockKey;
+/// A user info key for use with certain error types.
+extern NSString *const kRLMSyncErrorActionTokenKey;
 
 /**
  The error domain string for all SDK errors related to errors reported
@@ -46,24 +43,16 @@ extern NSString *const RLMSyncErrorDomain;
 extern NSString *const RLMSyncAuthErrorDomain;
 
 /**
- The error domain string for all SDK errors related to the permissions
- system and APIs.
- */
-extern NSString *const RLMSyncPermissionErrorDomain;
+The error domain string for all SDK errors related to the MongoDB Realm
+endpoint.
+*/
+extern NSString *const RLMAppErrorDomain;
 
 /**
  An error related to a problem that might be reported by the synchronization manager
  error handler, or a callback on a sync-related API that performs asynchronous work.
  */
 typedef RLM_ERROR_ENUM(NSInteger, RLMSyncError, RLMSyncErrorDomain) {
-    /**
-     An error that indicates that the response received from the
-     authentication server was malformed.
-
-     @warning This error is deprecated, and has been replaced by
-              `RLMSyncAuthErrorBadResponse`.
-     */
-    RLMSyncErrorBadResponse __deprecated_msg("This error has been replaced by 'RLMSyncAuthErrorBadResponse'") = 1,
 
     /// An error that indicates a problem with the session (a specific Realm opened for sync).
     RLMSyncErrorClientSessionError      = 4,
@@ -80,36 +69,39 @@ typedef RLM_ERROR_ENUM(NSInteger, RLMSyncError, RLMSyncErrorDomain) {
     /**
      An error that indicates the Realm needs to be reset.
 
-     A synced Realm may need to be reset because the Realm Object Server encountered an
+     A synced Realm may need to be reset because MongoDB Realm encountered an
      error and had to be restored from a backup. If the backup copy of the remote Realm
      is of an earlier version than the local copy of the Realm, the server will ask the
      client to reset the Realm.
 
      The reset process is as follows: the local copy of the Realm is copied into a recovery
      directory for safekeeping, and then deleted from the original location. The next time
-     the Realm for that URL is opened, the Realm will automatically be re-downloaded from the
-     Realm Object Server, and can be used as normal.
+     the Realm for that partition value is opened, the Realm will automatically be re-downloaded from
+     MongoDB Realm, and can be used as normal.
 
      Data written to the Realm after the local copy of the Realm diverged from the backup
      remote copy will be present in the local recovery copy of the Realm file. The
      re-downloaded Realm will initially contain only the data present at the time the Realm
      was backed up on the server.
 
-     The client reset process can be initiated in one of two ways. The block provided in the
-     `userInfo` dictionary under `kRLMSyncInitiateClientResetBlockKey` can be called to
-     initiate the reset process. This block can be called any time after the error is
-     received, but should only be called after your app closes and invalidates every
+     The client reset process can be initiated in one of two ways.
+     
+     The `userInfo` dictionary contains an opaque token object under the key
+     `kRLMSyncErrorActionTokenKey`. This token can be passed into
+     `+[RLMSyncSession immediatelyHandleError:]` in order to immediately perform the client
+     reset process. This should only be done after your app closes and invalidates every
      instance of the offending Realm on all threads (note that autorelease pools may make this
      difficult to guarantee).
 
-     If the block is not called, the client reset process will be automatically carried out
-     the next time the app is launched and the `RLMSyncManager` singleton is accessed.
+     If `+[RLMSyncSession immediatelyHandleError:]` is not called, the client reset process
+     will be automatically carried out the next time the app is launched and the
+     `RLMSyncManager` singleton is accessed.
 
      The value for the `kRLMSyncPathOfRealmBackupCopyKey` key in the `userInfo` dictionary
      describes the path of the recovered copy of the Realm. This copy will not actually be
      created until the client reset process is initiated.
 
-     @see `-[NSError rlmSync_clientResetBlock]`, `-[NSError rlmSync_clientResetBackedUpRealmPath]`
+     @see `-[NSError rlmSync_errorActionToken]`, `-[NSError rlmSync_clientResetBackedUpRealmPath]`
      */
     RLMSyncErrorClientResetError        = 7,
 
@@ -134,20 +126,22 @@ typedef RLM_ERROR_ENUM(NSInteger, RLMSyncError, RLMSyncErrorDomain) {
      A Realm that suffers a permission denied error is, by default, flagged so that its
      local copy will be deleted the next time the application starts.
      
-     The `userInfo` dictionary contains a block under the key
-     `kRLMSyncInitiateDeleteRealmBlockKey`, which can be used to request that the file be
-     deleted immediately instead. This block can be called any time after the error is
-     received to immediately delete the Realm file, but should only be called after your
-     app closes and invalidates every instance of the offending Realm on all threads (note
-     that autorelease pools may make this difficult to guarantee).
+     The `userInfo` dictionary contains an opaque token object under the key
+     `kRLMSyncErrorActionTokenKey`. This token can be passed into
+     `+[RLMSyncSession immediatelyHandleError:]` in order to immediately delete the local
+     copy. This should only be done after your app closes and invalidates every instance
+     of the offending Realm on all threads (note that autorelease pools may make this
+     difficult to guarantee).
 
      @warning It is strongly recommended that, if a Realm has encountered a permission denied
               error, its files be deleted before attempting to re-open it.
+     
+     @see `-[NSError rlmSync_errorActionToken]`
      */
     RLMSyncErrorPermissionDeniedError   = 9,
 };
 
-/// An error which is related to authentication to a Realm Object Server.
+/// An error which is related to authentication to MongoDB Realm.
 typedef RLM_ERROR_ENUM(NSInteger, RLMSyncAuthError, RLMSyncAuthErrorDomain) {
     /// An error that indicates that the response received from the authentication server was malformed.
     RLMSyncAuthErrorBadResponse                     = 1,
@@ -162,6 +156,12 @@ typedef RLM_ERROR_ENUM(NSInteger, RLMSyncAuthError, RLMSyncAuthErrorDomain) {
 
     /// An error that indicates a problem with the session (a specific Realm opened for sync).
     RLMSyncAuthErrorClientSessionError              = 4,
+
+    /// An error that indicates that the provided credentials are ill-formed.
+    RLMSyncAuthErrorInvalidParameters               = 601,
+
+    /// An error that indicates that no Realm path was included in the URL.
+    RLMSyncAuthErrorMissingPath                     = 602,
 
     /// An error that indicates that the provided credentials are invalid.
     RLMSyncAuthErrorInvalidCredential               = 611,
@@ -178,46 +178,24 @@ typedef RLM_ERROR_ENUM(NSInteger, RLMSyncAuthError, RLMSyncAuthErrorDomain) {
     /// An error that indicates the refresh token was invalid.
     RLMSyncAuthErrorInvalidAccessToken              = 615,
 
-    /// An error that indicates the permission offer is expired.
-    RLMSyncAuthErrorExpiredPermissionOffer          = 701,
-
-    /// An error that indicates the permission offer is ambiguous.
-    RLMSyncAuthErrorAmbiguousPermissionOffer        = 702,
-
     /// An error that indicates the file at the given path can't be shared.
     RLMSyncAuthErrorFileCannotBeShared              = 703,
 };
 
-/**
- An error related to the permissions subsystem.
- */
-typedef RLM_ERROR_ENUM(NSInteger, RLMSyncPermissionError, RLMSyncPermissionErrorDomain) {
-    /**
-     An error that indicates a permission change operation failed. The `userInfo`
-     dictionary contains the underlying error code and a message (if any).
-     */
-    RLMSyncPermissionErrorChangeFailed  = 1,
-
-    /**
-     An error that indicates that attempting to retrieve permissions failed.
-     */
-    RLMSyncPermissionErrorGetFailed     = 2,
+/// An error which is related to authentication to MongoDB Realm.
+typedef RLM_ERROR_ENUM(NSInteger, RLMAppError, RLMAppErrorDomain) {
+    /// An unknown error has occured
+    RLMAppErrorUnknown                        = -1,
+    
+    /// An error that indicates that the session is invalid
+    RLMAppErrorInvalidSession                 = 2,
+    
+    /// An error that indicates that the request sent to the server was invalid
+    RLMAppErrorBadRequest                     = 48,
+    
+    /// An error that indicates the user cannot be found
+    RLMAppErrorUserNotFound                   = 45
 };
 
-/// An enum representing the different states a sync management object can take.
-typedef NS_ENUM(NSUInteger, RLMSyncManagementObjectStatus) {
-    /// The management object has not yet been processed by the object server.
-    RLMSyncManagementObjectStatusNotProcessed,
-    /// The operations encoded in the management object have been successfully
-    /// performed by the object server.
-    RLMSyncManagementObjectStatusSuccess,
-    /**
-     The operations encoded in the management object were not successfully
-     performed by the object server.
-     Refer to the `statusCode` and `statusMessage` properties for more details
-     about the error.
-     */
-    RLMSyncManagementObjectStatusError,
-};
 
 NS_ASSUME_NONNULL_END

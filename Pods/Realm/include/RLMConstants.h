@@ -20,13 +20,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-// For compatibility with Xcode 7, before extensible string enums were introduced,
-#ifdef NS_EXTENSIBLE_STRING_ENUM
-#define RLM_EXTENSIBLE_STRING_ENUM NS_EXTENSIBLE_STRING_ENUM
-#define RLM_EXTENSIBLE_STRING_ENUM_CASE_SWIFT_NAME(_, extensible_string_enum) NS_SWIFT_NAME(extensible_string_enum)
+// Swift 5 considers NS_ENUM to be "open", meaning there could be values present
+// other than the defined cases (which allows adding more cases later without
+// it being a breaking change), while older versions consider it "closed".
+#ifdef NS_CLOSED_ENUM
+#define RLM_CLOSED_ENUM NS_CLOSED_ENUM
 #else
-#define RLM_EXTENSIBLE_STRING_ENUM
-#define RLM_EXTENSIBLE_STRING_ENUM_CASE_SWIFT_NAME(fully_qualified, _) NS_SWIFT_NAME(fully_qualified)
+#define RLM_CLOSED_ENUM NS_ENUM
 #endif
 
 #if __has_attribute(ns_error_domain) && (!defined(__cplusplus) || !__cplusplus || __cplusplus >= 201103L)
@@ -47,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  For more information, see [Realm Models](https://realm.io/docs/objc/latest/#models).
  */
-typedef NS_ENUM(int32_t, RLMPropertyType) {
+typedef RLM_CLOSED_ENUM(int32_t, RLMPropertyType) {
 
 #pragma mark - Primitive types
 
@@ -69,21 +69,22 @@ typedef NS_ENUM(int32_t, RLMPropertyType) {
     /**
      Any object: `id`.
 
-     This property type is no longer supported for new models. However, old models with any-typed properties are still
-     supported for migration purposes.
+     This property type is no longer supported for new models. However, old files
+     with any-typed properties are still supported for migration purposes.
      */
     RLMPropertyTypeAny    = 9,
     /** Dates: `NSDate` */
     RLMPropertyTypeDate   = 4,
 
-#pragma mark - Array/Linked object types
+#pragma mark - Linked object types
 
     /** Realm model objects. See [Realm Models](https://realm.io/docs/objc/latest/#models) for more information. */
     RLMPropertyTypeObject = 7,
-    /** Realm arrays. See [Realm Models](https://realm.io/docs/objc/latest/#models) for more information. */
-    RLMPropertyTypeArray  = 128,
     /** Realm linking objects. See [Realm Models](https://realm.io/docs/objc/latest/#models) for more information. */
     RLMPropertyTypeLinkingObjects = 8,
+
+    RLMPropertyTypeObjectId = 10,
+    RLMPropertyTypeDecimal128 = 11,
 };
 
 /** An error domain identifying Realm-specific errors. */
@@ -145,6 +146,15 @@ typedef RLM_ERROR_ENUM(NSInteger, RLMError, RLMErrorDomain) {
 
     /** Denotes an error that occurs if there is a schema version mismatch, so that a migration is required. */
     RLMErrorSchemaMismatch = 10,
+    // Error code 11 is obsolete
+    // RLMErrorIncompatibleSyncedFile = 11,
+    /**
+     Denotates an error where an operation was requested which cannot be performed on an open file.
+     */
+    RLMErrorAlreadyOpen = 12,
+
+    /// Denotates an error where an input value was invalid.
+    RLMErrorInvalidInput = 13,
 };
 
 #pragma mark - Constants
@@ -154,18 +164,20 @@ typedef RLM_ERROR_ENUM(NSInteger, RLMError, RLMErrorDomain) {
 /**
  A notification indicating that changes were made to a Realm.
 */
-typedef NSString * RLMNotification RLM_EXTENSIBLE_STRING_ENUM;
+typedef NSString * RLMNotification NS_EXTENSIBLE_STRING_ENUM;
 
 /**
- This notification is posted by a Realm when the data in that Realm has changed.
+ This notification is posted when a write transaction has been committed to a Realm on a different thread for
+ the same file.
 
- More specifically, this notification is posted after a Realm has been refreshed to
- reflect a write transaction. This can happen when an autorefresh occurs, when
- `-[RLMRealm refresh]` is called, after an implicit refresh from `-[RLMRealm beginWriteTransaction]`,
- or after a local write transaction is completed.
+ It is not posted if `autorefresh` is enabled, or if the Realm is refreshed before the notification has a chance
+ to run.
+
+ Realms with autorefresh disabled should normally install a handler for this notification which calls
+ `-[RLMRealm refresh]` after doing some work. Refreshing the Realm is optional, but not refreshing the Realm may lead to
+ large Realm files. This is because an extra copy of the data must be kept for the stale Realm.
  */
-extern RLMNotification const RLMRealmRefreshRequiredNotification
-RLM_EXTENSIBLE_STRING_ENUM_CASE_SWIFT_NAME(RLMRealmRefreshRequiredNotification, RefreshRequired);
+extern RLMNotification const RLMRealmRefreshRequiredNotification NS_SWIFT_NAME(RefreshRequired);
 
 /**
  This notification is posted by a Realm when a write transaction has been
@@ -180,8 +192,12 @@ RLM_EXTENSIBLE_STRING_ENUM_CASE_SWIFT_NAME(RLMRealmRefreshRequiredNotification, 
  files. This is because Realm must keep an extra copy of the data for the stale
  Realm.
  */
-extern RLMNotification const RLMRealmDidChangeNotification
-RLM_EXTENSIBLE_STRING_ENUM_CASE_SWIFT_NAME(RLMRealmDidChangeNotification, DidChange);
+extern RLMNotification const RLMRealmDidChangeNotification NS_SWIFT_NAME(DidChange);
+
+#pragma mark - Error keys
+
+/** Key to identify the associated backup Realm configuration in an error's `userInfo` dictionary */
+extern NSString * const RLMBackupRealmConfigurationErrorKey;
 
 #pragma mark - Other Constants
 

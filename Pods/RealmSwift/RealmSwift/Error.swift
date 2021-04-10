@@ -33,7 +33,7 @@ extension Realm {
      }
      ```
     */
-    public struct Error {
+    @frozen public struct Error {
         public typealias Code = RLMError.Code
 
         /// Error thrown by Realm if no other specific error is returned when a realm is opened.
@@ -74,12 +74,23 @@ extension Realm {
         }
 
         /// :nodoc:
-        public var _nsError: NSError
+        public let _nsError: NSError
 
         /// :nodoc:
         public init(_nsError error: NSError) {
             _nsError = error
         }
+
+        /// Realm configuration that can be used to open the backup copy of a Realm file
+        ///
+        /// Only applicable to `incompatibleSyncedFile`. Will be `nil` for all other errors.
+        public var backupConfiguration: Realm.Configuration? {
+            let configuration = userInfo[RLMBackupRealmConfigurationErrorKey] as! RLMRealmConfiguration?
+            return configuration.map(Realm.Configuration.fromRLMRealmConfiguration)
+        }
+
+        /// This error could be returned by completion block when no success and no error were produced
+        public static let callFailed = Error(.fail, userInfo: [NSLocalizedDescriptionKey: "Call failed"])
     }
 }
 
@@ -87,7 +98,9 @@ extension Realm {
 // Provide bridging from errors with domain RLMErrorDomain to Error.
 extension Realm.Error: _BridgedStoredNSError {
     /// :nodoc:
-    public static var _nsErrorDomain = RLMErrorDomain
+    public static let _nsErrorDomain = RLMErrorDomain
+    /// :nodoc:
+    public static let errorDomain = RLMErrorDomain
 }
 
 // MARK: Equatable
