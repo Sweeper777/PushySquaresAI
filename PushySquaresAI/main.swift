@@ -1,37 +1,8 @@
 import Foundation
 import RealmSwift
 
-func printBoard(_ board: Array2D<Tile>) {
-    for y in 0..<board.columns {
-        for x in 0..<board.rows {
-            switch board[x, y] {
-            case .empty:
-                print("⬜️", separator: "", terminator: "")
-            case .wall:
-                print("🔲", separator: "", terminator: "")
-            case .void:
-                print("▫️", separator: "", terminator: "")
-            case .square(let color):
-                switch color {
-                case .color1:
-                    print("🚹", separator: "", terminator: "")
-                case .color2:
-                    print("🚺", separator: "", terminator: "")
-                case .color3:
-                    print("🚼", separator: "", terminator: "")
-                case .color4:
-                    print("❇️", separator: "", terminator: "")
-                case .grey:
-                    print("ℹ️", separator: "", terminator: "")
-                }
-            }
-        }
-        print("")
-    }
-}
-
 func printGame(_ game: Game) {
-    let colorToCharatcer = [Color.color1: "🚹", .color2: "🚺", .color3: "🚼", .color4: "❇️"]
+    let colorToCharatcer = [Color.red: "🚹", .blue: "🚺", .green: "🚼", .yellow: "❇️"]
     print("--------------")
     print("New Square In: \(game.currentPlayer.turnsUntilNewSquare)")
     print("Current Turn: \(colorToCharatcer[game.currentPlayer.color]!)")
@@ -41,23 +12,23 @@ func printGame(_ game: Game) {
     }
     print()
     print("--------------")
-    printBoard(game.board)
+    printBoard(game.map, state: game.boardState)
 }
 
 func playGame(withAgents agents: [Agent]) {
-    let game = Game(map: .standard, playerCount: agents.count + 1)
+    let game = Game(map: Map(name: "quick")!, playerCount: agents.count + 1)
     //let start = Date()
-    var colors: [Color: Agent] = [.color3: agents[0]]
+    var colors: [Color: Agent] = [.green: agents[0]]
     if agents.count > 1 {
-        colors[.color2] = agents[1]
+        colors[.blue] = agents[1]
     }
     if agents.count > 2 {
-        colors[.color4] = agents[2]
+        colors[.yellow] = agents[2]
     }
     while game.players.filter({$0.lives > 0}).count >= 2 {
         printGame(game)
         
-        if game.currentPlayer.color == .color1 {
+        if game.currentPlayer.color == .red {
             loop: repeat {
                 switch readLine()! {
                 case "r":
@@ -86,10 +57,9 @@ func playGame(withAgents agents: [Agent]) {
 }
 
 let agents = [
-    [9264,2083,3,2111,1915,4922,3956,397,3952],
-    [6405,7827,5,1713,1842,3378,1342,4598,4435],
-    [8420,9285,0,181,4669,5890,4306,4200,7995], // strongest
-    [9062,3260,0,2634,4669,8793,1705,2725,6083],
+    [11272,4625,1,4958,5089,4497,3298,2129,3190],
+    [16375,1413,1,3201,2927,7291,2164,4735,1830],
+    [26852,1620,1,2215,2187,6381,3931,5450,5726],
     ].map { Agent.fromArray($0) }
 //let start = Date()
 //let game = AgentGame(agents: agents, map: Map(file: "grey2"))
@@ -118,12 +88,12 @@ let agents = [
 //ai = GameAI(game: movedDown, myColor: .color1, agent: .standard)
 //print(ai.evaluateHeuristics())
 
-//var prevFitness: Double = 170.22
+//var prevFitness: Double? = nil
 //for i in 1...3 {
 //    print("--------------")
 //    print("Starting Generation \(i)")
 //    print("-------------")
-//    prevFitness = runGeneration(previousFitness: prevFitness)
+//    prevFitness = runGeneration(previousFitness: prevFitness, mentors: agents)
 //    print("--------------")
 //    print("Generation \(i) Ended")
 //    print("-------------")
@@ -137,14 +107,4 @@ let agents = [
 //    }
 //}
 
-@discardableResult
-func shell(_ args: String...) -> Int32 {
-    let task = Process()
-    task.launchPath = "/usr/bin/env"
-    task.arguments = args
-    task.launch()
-    task.waitUntilExit()
-    return task.terminationStatus
-}
-
-shell("printf", "'\\e[8;50;100t'")
+playGame(withAgents: agents)
