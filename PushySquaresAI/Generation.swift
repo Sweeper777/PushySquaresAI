@@ -74,11 +74,11 @@ func runGeneration(previousFitness: Double?, mentors: [Agent]) -> Double {
         }
         let mutationRate: Int
         if previousFitness == nil {
-            mutationRate = 4
+            mutationRate = toBeKilled.count
         } else if abs(previousFitness! - currentFitness) > 10 && currentFitness > previousFitness!{
-            mutationRate = 1
+            mutationRate = 10
         } else {
-            mutationRate = 4
+            mutationRate = toBeKilled.count
         }
         for _ in 0..<mutationRate {
             let agent = randomFromArrayAndRemove(&offsprings)
@@ -86,7 +86,7 @@ func runGeneration(previousFitness: Double?, mentors: [Agent]) -> Double {
                 agent.mutate()
             }
         }
-        print("Mutated 2% of the population")
+        print("Mutated \(mutationRate) agents")
     }
     print("Average Fitness: \(currentFitness)")
     return currentFitness
@@ -121,25 +121,28 @@ extension Agent {
     
     func mutate() {
         func mutateProperty(_ property: inout Int) {
+            property = Int(Double(property) * (Bool.random() ? 1.1 : 0.9))
         }
-        switch arc4random_uniform(8) {
-        case 0:
-            mutateProperty(&wDiffLives)
-        case 1:
-            mutateProperty(&wSelfLife)
-        case 2:
-            mutateProperty(&wSelfSpreadBelowThreshold)
-        case 3:
-            mutateProperty(&wSelfSpreadAboveThreshold)
-        case 4:
-            mutateProperty(&wOpponentSpread)
-        case 5:
-            mutateProperty(&wSelfInDanger)
-        case 6:
-            mutateProperty(&wOpponentInDangerBelowThreshold)
-        case 7:
-            mutateProperty(&wOpponentInDangerAboveThreshold)
-        default: break
+        for _ in 0..<8 {
+            switch Int.random(in: 0..<8) {
+            case 0:
+                mutateProperty(&wDiffLives)
+            case 1:
+                mutateProperty(&wSelfLife)
+            case 2:
+                mutateProperty(&wSelfSpreadBelowThreshold)
+            case 3:
+                mutateProperty(&wSelfSpreadAboveThreshold)
+            case 4:
+                mutateProperty(&wOpponentSpread)
+            case 5:
+                mutateProperty(&wSelfInDanger)
+            case 6:
+                mutateProperty(&wOpponentInDangerBelowThreshold)
+            case 7:
+                mutateProperty(&wOpponentInDangerAboveThreshold)
+            default: break
+            }
         }
     }
 }
