@@ -16,7 +16,7 @@ func printGame(_ game: Game) {
 }
 
 func playGame(withAgents agents: [Agent]) {
-    let game = Game(map: Map(name: "quick")!, playerCount: agents.count + 1)
+    let game = Game(map: Map(name: "standard")!, playerCount: agents.count + 1)
     //let start = Date()
     var colors: [Color: Agent] = [.green: agents[0]]
     if agents.count > 1 {
@@ -57,9 +57,9 @@ func playGame(withAgents agents: [Agent]) {
 }
 
 let agents = [
-    [11272,4625,1,4958,5089,4497,3298,2129,3190],
-    [16375,1413,1,3201,2927,7291,2164,4735,1830],
-    [26852,1620,1,2215,2187,6381,3931,5450,5726],
+    [2150,1408,1,3278,232,1852,1518,377,2548],
+    [27091,1826,1,526,581,5959,2355,4176,7035],
+    [14412,1442,1,2722,516,4185,1658,647,5170]
     ].map { Agent.fromArray($0) }
 //let start = Date()
 //let game = AgentGame(agents: agents, map: Map(file: "grey2"))
@@ -88,7 +88,7 @@ let agents = [
 //ai = GameAI(game: movedDown, myColor: .color1, agent: .standard)
 //print(ai.evaluateHeuristics())
 
-//var prevFitness: Double? = nil
+//var prevFitness: Double? = 274.0
 //for i in 1...3 {
 //    print("--------------")
 //    print("Starting Generation \(i)")
