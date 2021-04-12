@@ -30,7 +30,7 @@ func runGeneration(previousFitness: Double?, mentors: [Agent]) -> Double {
         DispatchQueue.concurrentPerform(iterations: agentCopies.count) { i in
             let agent = agentCopies[i].0
             var agentPlayers = mentors
-            agentPlayers.insert(agent, at: Int.random(in: 0..<4))
+            agentPlayers.insert(agent, at: Int.random(in: 0..<agentPlayers.count+1))
             let (mapName, map) = maps.randomElement()!
             let game = AgentGame(agents: agentPlayers, map: map)
             print("game \(i) starts, Map: \(mapName)")
