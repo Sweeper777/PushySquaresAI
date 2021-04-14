@@ -1,5 +1,6 @@
 import Foundation
 import RealmSwift
+import GameplayKit
 
 func printGame(_ game: Game) {
     let colorToCharatcer = [Color.red: "🚹", .blue: "🚺", .green: "🚼", .yellow: "❇️"]
@@ -57,7 +58,7 @@ func playGame(withAgents agents: [Agent]) {
 }
 
 let agents = [
-    [3942,6045,0,1267,6206,4379,7835,934,7869]
+    [9817,3256,2,6212,3272,4225,6744,2582,5886]
     ].map { Agent.fromArray($0) }
 //let start = Date()
 //let game = AgentGame(agents: agents, map: Map(file: "grey2"))
@@ -106,3 +107,38 @@ let agents = [
 //}
 
 playGame(withAgents: agents)
+
+//while game.players.filter({$0.lives > 0}).count >= 2 {
+//    printGame(game)
+//
+//    if game.currentPlayer.color == .red {
+//        loop: repeat {
+//            switch readLine()! {
+//            case "r":
+//                game.moveRight()
+//                break loop
+//            case "l":
+//                game.moveLeft()
+//                break loop
+//            case "u":
+//                game.moveUp()
+//                break loop
+//            case "d":
+//                game.moveDown()
+//                break loop
+//            default: continue
+//            }
+//        } while true
+//    } else {
+//        let minimaxStrategist = GKMinmaxStrategist()
+//        minimaxStrategist.gameModel = GameModel(game: game)
+////        minimaxStrategist.explorationParameter = 1
+//        minimaxStrategist.randomSource = GKARC4RandomSource()
+//        let move = minimaxStrategist.bestMoveForActivePlayer()
+//        print(move)
+//        game.moveInDirection((move as! MoveModel).move)
+//    }
+//}
+////let end = Date()
+////print("time used: \(end.timeIntervalSince(start))")
+//printGame(game)
