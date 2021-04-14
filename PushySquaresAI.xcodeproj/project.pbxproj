@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25EF08DD819042DE3717F04A /* GameplayKitModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EF080780F7E8EA71A4DB7A /* GameplayKitModels.swift */; };
 		5122ADE15E550A1E3DA462B4 /* Pods_PushySquaresAI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69921A5ABCA386FC07CDED93 /* Pods_PushySquaresAI.framework */; };
 		5A2660041F99DAC900CABB41 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2660031F99DAC900CABB41 /* main.swift */; };
 		5A5CFAB726212B4000C66679 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5CFAAB26212B3F00C66679 /* Player.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		25EF080780F7E8EA71A4DB7A /* GameplayKitModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameplayKitModels.swift; sourceTree = "<group>"; };
 		2EB398776E28AEB5F6008717 /* Pods-PushySquaresAI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PushySquaresAI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PushySquaresAI/Pods-PushySquaresAI.debug.xcconfig"; sourceTree = "<group>"; };
 		5A2660001F99DAC900CABB41 /* PushySquaresAI */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PushySquaresAI; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A2660031F99DAC900CABB41 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				5A6A0D041F9BAF7A0075FDB2 /* AgentGame.swift */,
 				5A6A0D061F9BB5400075FDB2 /* Generation.swift */,
 				5A6A0D081F9BDF3C0075FDB2 /* Breed.swift */,
+				25EF080780F7E8EA71A4DB7A /* GameplayKitModels.swift */,
 			);
 			path = PushySquaresAI;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				5A5CFACA26212C9900C66679 /* GameAI.swift in Sources */,
 				5A5CFAC126212B4000C66679 /* Map.swift in Sources */,
 				5A5CFABC26212B4000C66679 /* Direction.swift in Sources */,
+				25EF08DD819042DE3717F04A /* GameplayKitModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
