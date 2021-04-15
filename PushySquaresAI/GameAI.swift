@@ -42,6 +42,8 @@ public class GameAI {
 
     let myColor: Color
 
+    var nodesPruned = [Int]()
+
     public init(game: Game, myColor: Color, wSelfLife: Int, wDiffLives: Int, wSquareThreshold: Int, wSelfSpreadBelowThreshold: Int, wSelfSpreadAboveThreshold: Int, wOpponentSpread: Int, wSelfInDanger: Int, wOpponentInDangerBelowThreshold: Int, wOpponentInDangerAboveThreshold: Int) {
         self.gameStates = [game]
         self.myColor = myColor
@@ -85,6 +87,7 @@ public class GameAI {
         } else {
             var alphaCopy = alpha
             var betaCopy = beta
+            var pruned = 3
             for move in (game.boardState.indices(ofColor: color).count == 0 ? [Direction.up] : [Direction.up, .down, .left, .right]) {
                 let gameCopy = game.createCopy()
                 switch move {
@@ -109,8 +112,10 @@ public class GameAI {
                 }
                 gameStates.removeLast()
                 if alphaCopy >= betaCopy {
+                    nodesPruned.append(pruned)
                     break
                 }
+                pruned -= 1
             }
             return (color == myColor ? alphaCopy : betaCopy, bestDirection ?? .left)
         }
