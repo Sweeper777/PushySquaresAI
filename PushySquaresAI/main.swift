@@ -50,6 +50,7 @@ func playGame(withAgents agents: [Agent]) {
         } else {
             let ai = GameAI(game: game.createCopy(), myColor: game.currentPlayer.color, agent: colors[game.currentPlayer.color]!)
             game.moveInDirection(ai.getNextMove())
+            print("Average Pruned:", Double(ai.nodesPruned.reduce(0, +)) / Double(ai.nodesPruned.count))
         }
     }
     //let end = Date()
@@ -58,7 +59,9 @@ func playGame(withAgents agents: [Agent]) {
 }
 
 let agents = [
-    [9817,3256,2,6212,3272,4225,6744,2582,5886]
+    [9264,2083,3,2111,1915,4922,3956,397,3952],
+    [8420,9285,0,181,4669,5890,4306,4200,7995],
+    [9062,3260,0,2634,4669,8793,1705,2725,6083]
     ].map { Agent.fromArray($0) }
 //let start = Date()
 //let game = AgentGame(agents: agents, map: Map(file: "grey2"))
